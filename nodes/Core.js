@@ -432,6 +432,9 @@ x3dom.registerNodeType(
 		 * Constructor for MetadataBoolean passing a context object
 		 * @constructs x3dom.nodeTypes.MetadataBoolean
 		 * @extends x3dom.nodeTypes.X3DMetadataObject
+         * @x3d 2.3
+         * @component core
+         * @status full
 		 * @param {Object} ctx - context object containing initial settings
 		 */
 		function (ctx) {
@@ -442,6 +445,7 @@ x3dom.registerNodeType(
              * @var {x3dom.fields.MFBoolean} value
              * @memberof x3dom.nodeTypes.MetadataBoolean
              * @instance
+             * @x3d 2.1
              */
             this.addField_MFBoolean(ctx, 'value', []);
         }

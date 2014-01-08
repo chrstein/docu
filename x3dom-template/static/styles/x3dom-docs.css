@@ -39,3 +39,39 @@ body
 {
     background:#333333;
 }
+
+.x3d-classification
+{
+    border-radius: 2px;
+    border: 1px solid black;
+    background-color: lightgrey;
+}
+
+.x3d-propname
+{
+    float: left;
+}
+
+.x3d
+{
+}
+
+.x3d-component
+{
+    color: blue;
+}
+
+.status-full
+{
+    color: forestgreen;
+}
+
+.status-experimental
+{
+    color: yellow;
+}
+
+.status-unsupported
+{
+    color: red;
+}

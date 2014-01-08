@@ -11,6 +11,27 @@
 
 <?js if (doc.kind == 'class') { ?>
 <div class="class-summary">
+    <div class="x3d-classification">
+        <?js if (doc.x3d) { ?>
+            <div class="x3d-propname">X3D: </div>
+            <div class="x3d-value "><?js= doc.x3d ?></div>
+        <?js } ?>
+        <?js if (doc.component) { ?>
+            <div class="x3d-propname">Component: </div>
+            <div class="x3d-component"><?js= doc.component ?></div>
+        <?js } ?>
+        <?js
+        if (doc.status)
+        {
+            var class = (doc.status == "full")
+            ? "status-full"
+            : (doc.status == "experimental" ? "status-experimental" : "status-unsupported");
+        ?>
+            <div class="x3d-propname">Status: </div>
+            <div class="<?js= class ?>"><?js= doc.status ?></div>
+        <?js
+        } ?>
+    </div>
     <div>
         <h3>Class Properties:</h3>
         <ul>
@@ -52,9 +73,11 @@
         <span class="ancestors"><?js= doc.ancestors.join('') ?></span>
     <?js } ?>
     <?js= doc.name ?>
+
     <?js if (doc.variation) { ?>
         <sup class="variation"><?js= doc.variation ?></sup>
     <?js } ?></h2>
+
     <?js if (doc.classdesc) { ?>
         <div class="class-description"><?js= doc.classdesc ?></div>
     <?js } ?>
