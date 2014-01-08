@@ -16,6 +16,8 @@
 
 <body>
 
+<div id="mainContainerDiv">
+
 <div id="header-decoration">
     official x3<strong>dom</strong> documentation
 </div>
@@ -28,15 +30,47 @@
 </div>
 
 <div id="docu-navbar">
-    <a href="http://derp.org">Components</a>
-    <a href="http://derp.org">Classes</a>
-    <a href="http://derp.org">Namespaces</a>
+
+    <a href="index.html">
+        <?js if (title === "Overview") { ?>
+            <div class="docu-navitem docu-navitem-active">Overview</div>
+        <?js } else { ?>
+            <div class="docu-navitem">Overview</div>
+        <?js } ?>
+    </a>
+
+    <a href="http://derp.org">
+        <?js if (title === "Components") { ?>
+            <div class="docu-navitem docu-navitem-active">Components</div>
+        <?js } else { ?>
+            <div class="docu-navitem">Components</div>
+        <?js } ?>
+    </a>
+
+    <a href="http://derp.org">
+        <?js if (title === "Classes") { ?>
+                <div class="docu-navitem docu-navitem-active">Classes</div>
+        <?js } else { ?>
+            <div class="docu-navitem">Classes</div>
+        <?js } ?>
+    </a>
+
+    <a href="http://derp.org">
+        <?js if (title === "Namespaces") { ?>
+                <div class="docu-navitem docu-navitem-active">Namespaces</div>
+        <?js } else { ?>
+            <div class="docu-navitem">Namespaces</div>
+        <?js } ?>
+    </a>
+
 </div>
 
 <div id="main">
-    
-    <h1 class="page-title"><?js= title ?></h1>
-    
+
+    <?js if (title != "Overview" && title != "Components" && title != "Classes" && title != "Namespaces") { ?>
+        <h1 class="page-title"><?js= title ?></h1>
+    <?js } ?>
+
     <?js= content ?>
 
 </div>
@@ -54,6 +88,8 @@
 </footer>
 
 <script> prettyPrint();</script>
+
+</div>
 
 </body>
 </html>

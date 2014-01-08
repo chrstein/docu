@@ -440,7 +440,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     var files = find({kind: 'file'}),
         packages = find({kind: 'package'});
 
-    generate('Full API Documentation - Overview',
+    generate('Overview',
         packages.concat(
             [{kind: 'mainpage', isIndex: true, longname: (opts.mainpagetitle) ? opts.mainpagetitle : 'Main Page'}]
         ).concat(files),

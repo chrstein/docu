@@ -434,7 +434,7 @@ x3dom.registerNodeType(
 		 * @extends x3dom.nodeTypes.X3DMetadataObject
          * @x3d 2.3
          * @component core
-         * @status full
+         * @status experimental
 		 * @param {Object} ctx - context object containing initial settings
 		 */
 		function (ctx) {

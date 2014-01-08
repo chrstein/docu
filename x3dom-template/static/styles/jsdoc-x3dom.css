@@ -17,24 +17,49 @@ header
 
 #docu-navbar
 {
-    background: -webkit-linear-gradient(#EEEEEE, #999999);
-    background: -o-linear-gradient(#EEEEEE, #999999);
-    background: -moz-linear-gradient(#EEEEEE, #999999);
-    background: linear-gradient(#EEEEEE, #999999);
-    border-style:solid;
+    background: -webkit-linear-gradient(#EEEEEE, #BBBBBB);
+    background: -o-linear-gradient(#EEEEEE, #BBBBBB);
+    background: -moz-linear-gradient(#EEEEEE, #BBBBBB);
+    background: linear-gradient(#EEEEEE, #BBBBBB);
+    border-style:none;
     border-color:#B9B9B9;
     border-width:1px 0px;
     text-align:center;
-    vertical-align:middle;
+    padding:2px;
 }
 
 #docu-navbar a
 {
-    line-height:40px;
     text-decoration: none;
-    padding:20px;
-    font-size:120%;
+    font-size:17px;
+}
 
+.docu-navitem
+{
+    display:inline-block;
+    padding:6px 16px 8px 16px;
+    border-width: 1px;
+    border-style: hidden;
+    border-color: #888888;
+    border-radius: 3px;
+}
+
+.docu-navitem:hover, .docu-navitem-active
+{
+    /*background:#EEEEEE;
+    border-style: solid;
+    padding:5px 7px 7px 7px;*/
+    text-decoration: underline;
+}
+
+.docu-navitem-active, .docu-navitem-active:hover
+{
+    /*background: -webkit-linear-gradient(#BBBBBB, #EEEEEE);
+    background: -o-linear-gradient(#BBBBBB, #EEEEEE);
+    background: -moz-linear-gradient(#BBBBBB, #EEEEEE);
+    background: linear-gradient(#BBBBBB, #EEEEEE);
+    */
+    font-weight: bold;
 }
 
 .class-description {
@@ -94,12 +119,13 @@ h1
 {
     margin:0;
     font-size: 150%;
-    font-weight: bold;
+    color:#444;
     padding: 6px;
     background:#EEEEEE;
     border-style:solid;
-    border-color:#B9B9B9;
+    border-color:#AAAAAA;
     border-width:1px 0;
+    text-align:center;
 }
 
 h2
