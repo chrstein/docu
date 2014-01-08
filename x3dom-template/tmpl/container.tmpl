@@ -12,7 +12,7 @@
 <?js if (doc.kind == 'class') { ?>
 <div class="class-summary">
     <div>
-        <h3>Properties:</h3>
+        <h3>Class Properties:</h3>
         <ul>
             <?js
             var members = self.find({kind: 'member', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
@@ -28,7 +28,7 @@
     </div>
 
     <div>
-        <h3>Methods:</h3>
+        <h3>Class Methods:</h3>
         <?js
             var methods = self.find({kind: 'function', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
             if (methods && methods.length && methods.forEach) {
