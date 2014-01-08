@@ -1,0 +1,40 @@
+body
+{
+    border:0;
+    padding:0;
+    margin:0;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+
+#header-decoration
+{
+    padding: 24px;
+    background: -webkit-linear-gradient(#000B27, #004BBC);
+    background: -o-linear-gradient(#000B27, #004BBC);
+    background: -moz-linear-gradient(#000B27, #004BBC);
+    background: linear-gradient(#000B27, #004BBC);                 
+    color:white;
+    font-size:150%;
+}
+
+#header-navbar
+{
+    background:black;
+    color:#EEEEEE;
+    border-style:solid;
+    border-color:#B9B9B9;
+    border-width:1px 0px;
+    font-size:11pt;
+}
+
+#header-navbar a
+{
+    color:#EEEEEE;
+    text-decoration:none;
+    margin:8px;
+}
+
+#header-navbar a:hover
+{
+    background:#333333;
+}
