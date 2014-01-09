@@ -131,7 +131,7 @@
         {
 	?>
     <br>
-    <h3 class="subsection-title"><a name="Fields">Fields</a></h3>
+    <h3 class="subsection-title">Fields<a name="Fields" href="#">&#10548;</a></h3>
         <?js= self.partial('classFields.tmpl', fields) ?>
     <?js }
          if(properties.length)
@@ -139,7 +139,7 @@
      ?>
     <br>
     <br>
-    <h3 class="subsection-title"><a name="Properties">Properties</a></h3>
+    <h3 class="subsection-title">Properties<a name="Properties" href="#">&#10548;</a></h3>
     <?js= self.partial('classProperties.tmpl', properties) ?>
 
     <?js } ?>
@@ -151,7 +151,7 @@
     ?>
         <br>
         <br>
-        <h3 class="subsection-title"><a name="Methods">Methods</a></h3>
+        <h3 class="subsection-title">Methods<a name="Methods" href="#">&#10548;</a></h3>
         
         <dl><?js methods.forEach(function(m) { ?>
             <?js= self.partial('method.tmpl', m) ?>

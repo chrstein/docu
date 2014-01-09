@@ -137,8 +137,13 @@ header
 
 .overviewContainer ul
 {
+    padding:0;
+}
+
+.overviewContainer li
+{
     list-style: none;
-    padding:3px;
+    margin:8px;
 }
 
 .dataMemberOverviewContainer
@@ -225,15 +230,20 @@ h2
 {
     font-size: 140%;
     font-weight: bold;
-    padding: 6px 0 0;
+    margin:6px;
 }
 
 h3
 {
-    margin:4px;
+    margin:8px;
     font-size: 130%;
     font-weight: bold;
     padding: 5px 0 0;
+}
+
+h3 a
+{
+    text-decoration:none;
 }
 
 h4

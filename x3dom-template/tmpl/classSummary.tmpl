@@ -34,13 +34,13 @@ var title = obj.title;
             : (doc.status == "experimental" ? "status-experimental" : "status-unsupported");
         ?>
         <div class="x3d-propdesc">Status:
-            <div class="<?js= class ?>"><?js= doc.status ?></div>
+            <div class="<?js= class ?>"><?js= (doc.status === 'full' ? 'fully implemented' : doc.status ) ?></div>
         </div>
         <?js
         } ?>
     </div>
 
-    <div class="overviewContainer">
+    <!--div class="overviewContainer">
         <?js
             var members = self.find({kind: 'member',  memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
             var fields = [];
@@ -69,9 +69,9 @@ var title = obj.title;
                 ?>
             </ul>
         <?js } ?>
-    </div>
+    </div-->
 
-    <div class="overviewContainer">
+    <!--div class="overviewContainer">
             <?js
             var members = self.find({kind: 'member',  memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
             if (members && members.length && members.forEach) {
@@ -91,18 +91,29 @@ var title = obj.title;
         ?>
         </ul>
         <?js } ?>
-    </div>
+    </div-->
 
     <div class="overviewContainer">
+
+        <h2>Quick Links</h2>
+
+        <a href="#Fields"><h3>&#10152; Fields</h3></a>
+
+        <br>
+
+        <a href="#Properties"><h3>&#10152; Properties</h3></a>
+
+        <br>
+
         <?js
             var methods = self.find({kind: 'function',  memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
             if (methods && methods.length && methods.forEach) {
         ?>
-        <h3><a href="#Methods">Methods:</a></h3>
+        <a href="#Methods"><h3>&#10152; Methods:</h3></a>
         <ul>
             <?js methods.forEach(function(m) { ?>
             <li>
-                <a href="#<?js= m.name ?>"><?js= m.name ?> </a>
+                <a href="#<?js= m.name ?>">&#10152; <?js= m.name ?> </a>
             </li>
             <?js }); ?>
         </ul>
