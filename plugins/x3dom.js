@@ -22,13 +22,23 @@ exports.handlers =
  */
 exports.defineTags = function(dictionary)
 {
+    //member is a SF/MF-field
+    dictionary.defineTag('field',
+    {
+        mustHaveValue: false,
+        onTagged: function(doclet, tag)
+        {
+            if(tag)
+                doclet.field = true;
+        }
+    });
+
     //is the object X3D relative
     dictionary.defineTag('x3d',
     {
         mustHaveValue: true,
         onTagged: function(doclet, tag)
         {
-            //console.log("found x3d");
             if(tag.value )
             {
                 doclet.x3d = tag.value;

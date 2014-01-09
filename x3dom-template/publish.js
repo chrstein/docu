@@ -121,13 +121,11 @@ function generate(title, docs, filename, resolveLinks) {
     var outpath = path.join(outdir, filename),
         html = view.render('container.tmpl', docData);
 
-    var overview = "";//view.render('classOverview.tmpl', docData);
-
     if (resolveLinks) {
         html = helper.resolveLinks(html); // turn {@link foo} into <a href="foodoc.html">foo</a>
     }
     
-    fs.writeFileSync(outpath, overview+html, 'utf8');
+    fs.writeFileSync(outpath, html, 'utf8');
 }
 
 function generateSourceFiles(sourceFiles) {

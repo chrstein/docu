@@ -9,61 +9,15 @@
     <?js= self.partial('source.tmpl', doc) ?>
 <?js } else { ?>
 
-<?js if (doc.kind == 'class') { ?>
-<div class="class-summary">
-    <div class="x3d-classification">
-        <?js if (doc.x3d) { ?>
-            <div class="x3d-propname">X3D: </div>
-            <div class="x3d-value "><?js= doc.x3d ?></div>
-        <?js } ?>
-        <?js if (doc.component) { ?>
-            <div class="x3d-propname">Component: </div>
-            <div class="x3d-component"><?js= doc.component ?></div>
-        <?js } ?>
-        <?js
-        if (doc.status)
-        {
-            var class = (doc.status == "full")
-            ? "status-full"
-            : (doc.status == "experimental" ? "status-experimental" : "status-unsupported");
-        ?>
-            <div class="x3d-propname">Status: </div>
-            <div class="<?js= class ?>"><?js= doc.status ?></div>
-        <?js
-        } ?>
-    </div>
-    <div>
-        <h3>Class Properties:</h3>
-        <ul>
-            <?js
-            var members = self.find({kind: 'member', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
-            if (members && members.length && members.forEach) {
-        ?>
-            <?js members.forEach(function(p) { ?>
-            <li>
-                <a href="#<?js= p.name ?>"><?js= p.name ?> </a>
-            </li>
-            <?js }); ?>
-        </ul>
-        <?js } ?>
-    </div>
-
-    <div>
-        <h3>Class Methods:</h3>
-        <?js
-            var methods = self.find({kind: 'function', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
-            if (methods && methods.length && methods.forEach) {
-        ?>
-        <ul><?js methods.forEach(function(m) { ?>
-            <li>
-                <a href="#<?js= m.name ?>"><?js= m.name ?> </a>
-            </li>
-            <?js }); ?>
-        </ul>
-        <?js } ?>
-    </div>
-
-</div>
+<?js if (doc.kind == 'class') {
+    var data =
+    {
+        self: self,
+        doc : doc,
+        title: title
+    };
+    ?>
+    <?js= self.partial('classSummary.tmpl', data) ?>
 <?js } ?>
 
 <section>

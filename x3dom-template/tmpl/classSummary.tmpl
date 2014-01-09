@@ -1,1 +1,98 @@
+<?js
+var self = obj.self;
+var doc = obj.doc;
+var title = obj.title;
+?>
+
+<div class="class-summary">
+    <div class="x3d-classification">
+        <?js if (doc.x3d) { ?>
+        <div class="x3d-propname">X3D: </div>
+        <div class="x3d-value "><?js= doc.x3d ?></div>
+        <?js } ?>
+        <?js if (doc.component) { ?>
+        <div class="x3d-propname">Component: </div>
+        <div class="x3d-component"><?js= doc.component ?></div>
+        <?js } ?>
+        <?js
+        if (doc.status)
+        {
+            var class = (doc.status == "full")
+            ? "status-full"
+            : (doc.status == "experimental" ? "status-experimental" : "status-unsupported");
+        ?>
+        <div class="x3d-propname">Status: </div>
+        <div class="<?js= class ?>"><?js= doc.status ?></div>
+        <?js
+        } ?>
+    </div>
+
+    <div>
+        <?js
+            var members = self.find({kind: 'member',  memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
+            var fields = false;
+            if (members && members.length && members.forEach)
+            {
+                members.forEach(function(p)
+                {
+                    if(p.field && p.field == true)
+                        fields = true;
+                });
+            }
+            if( fields === true )
+            {
+        ?>
+        <h3>Class Fields:</h3>
+        <ul>
+        <?js
+            members.forEach(function(p) {
+            if(p.field && p.field == true)
+             ?>
+            <li>
+                <a href="#<?js= p.name ?>"><?js= p.name ?> </a>
+            </li>
+            <?js }); ?>
+        </ul>
+        <?js } ?>
+    </div>
+
+    <div>
+            <?js
+            var members = self.find({kind: 'member',  memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
+            if (members && members.length && members.forEach) {
+        ?>
+        <h3>Class Properties:</h3>
+        <ul>
+        <?js members.forEach(function(p) {
+            if(p.field == undefined)
+            {
+        ?>
+            <li>
+                <a href="#<?js= p.name ?>"><?js= p.name ?> </a>
+            </li>
+        <?js
+            }
+        });
+        ?>
+        </ul>
+        <?js } ?>
+    </div>
+
+    <div>
+        <?js
+            var methods = self.find({kind: 'function',  memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
+            if (methods && methods.length && methods.forEach) {
+        ?>
+        <h3>Class Methods:</h3>
+        <ul>
+            <?js methods.forEach(function(m) { ?>
+            <li>
+                <a href="#<?js= m.name ?>"><?js= m.name ?> </a>
+            </li>
+            <?js }); ?>
+        </ul>
+        <?js } ?>
+    </div>
+
+</div>
 

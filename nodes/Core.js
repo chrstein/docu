@@ -365,7 +365,7 @@ x3dom.registerNodeType(
 		/**
 		 * Add single field of type x3dom.SFMatrix4f
 		 * @memberof x3dom.nodeTypes.X3DNode
-		 * @instance
+         * @instance
 		 * @params {Object} ctx - the context 
 		 * @params {String} name - the name for the new field
 		 * @params {Number} [_00 - _33] - the initial values of the new field
@@ -443,6 +443,7 @@ x3dom.registerNodeType(
             /**
              * boolean values of the meta data node
              * @var {x3dom.fields.MFBoolean} value
+             * @field
              * @memberof x3dom.nodeTypes.MetadataBoolean
              * @instance
              * @x3d 2.1
