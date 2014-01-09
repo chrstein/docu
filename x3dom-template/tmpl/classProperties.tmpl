@@ -24,7 +24,17 @@
                     ( p.type && p.type.names && p.type.names.length ) ? p.type.names[0] : "Not found"
             ?>
         </div>
-        <div><?js= p.memberof ?></div>
+        <div>
+            <?js if(p.inherits)
+                     {
+                        var inherit = p.inherits.split('#');
+                        inherit = inherit[inherit.length-2].split('.');
+                        if(inherit.length)
+                        {
+                ?>
+            <?js= inherit[inherit.length-1] ?>
+            <?js }} ?>
+        </div>
         <div><?js= p.description ?></div>
     </div>
     <?js }) ?>

@@ -22,7 +22,17 @@
                     ( f.type && f.type.names && f.type.names.length ) ? f.type.names[0] : "Not found"
             ?>
             </div>
-            <div><?js= f.memberof ?></div>
+            <div>
+                <?js if(f.inherits)
+                     {
+                        var inherit = f.inherits.split('#');
+                        inherit = inherit[inherit.length-2].split('.');
+                        if(inherit.length)
+                        {
+                ?>
+                <?js= inherit[inherit.length-1] ?>
+                <?js }} ?>
+            </div>
             <div><?js= f.description ?></div>
             </div>
         <?js }) ?>
