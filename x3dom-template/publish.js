@@ -117,9 +117,21 @@ function generate(title, docs, filename, resolveLinks) {
         docs: docs
     };
 
-
     var outpath = path.join(outdir, filename),
+        html = "";
+
+    if(title == "Components")
+    {
+        html = view.render('componentsPage.tmpl', docData);
+    }
+    else if(title == "Classes")
+    {
+        html = view.render('classesPage.tmpl', docData);
+    }
+    else
+    {
         html = view.render('container.tmpl', docData);
+    }
 
     if (resolveLinks) {
         html = helper.resolveLinks(html); // turn {@link foo} into <a href="foodoc.html">foo</a>
@@ -450,11 +462,27 @@ exports.publish = function(taffyData, opts, tutorials) {
     var namespaces = taffy(members.namespaces);
     var mixins = taffy(members.mixins);
     var externals = taffy(members.externals);
-    
+
+    var componentMap = {};
+    var classList = [];
+    var nameSpaceList = [];
+
     for (var longname in helper.longnameToUrl) {
         if ( hasOwnProp.call(helper.longnameToUrl, longname) ) {
             var myClasses = helper.find(classes, {longname: longname});
-            if (myClasses.length) {
+            if (myClasses.length)
+            {
+                var component = myClasses[0].component ? myClasses[0].component : false;
+                if(component)
+                {
+                    if(componentMap[component] == undefined)
+                        componentMap[component] = [];
+
+                    componentMap[component].push(myClasses[0]);
+                }
+
+                classList.push(myClasses[0]);
+
                 generate('Class: ' + myClasses[0].name, myClasses, helper.longnameToUrl[longname]);
             }
             
@@ -464,7 +492,9 @@ exports.publish = function(taffyData, opts, tutorials) {
             }
 
             var myNamespaces = helper.find(namespaces, {longname: longname});
-            if (myNamespaces.length) {
+            if (myNamespaces.length)
+            {
+                nameSpaceList.push(myNamespaces[0]);
                 generate('Namespace: ' + myNamespaces[0].name, myNamespaces, helper.longnameToUrl[longname]);
             }
             
@@ -479,6 +509,10 @@ exports.publish = function(taffyData, opts, tutorials) {
             }
         }
     }
+
+    generate("Classes",classList, "Classes.html");
+    generate("Components", componentMap, "Components.html");
+    generate("Namespaces", nameSpaceList, "Namespaces.html");
 
     // TODO: move the tutorial functions to templateHelper.js
     function generateTutorial(title, tutorial, filename) {
