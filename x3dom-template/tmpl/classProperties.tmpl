@@ -1,0 +1,32 @@
+<?js
+    var props = obj;
+?>
+
+<div>
+    <?js
+         if (props && props.length )
+         {
+    ?>
+    <div class="row">
+        <div>Access</div>
+        <div>Name</div>
+        <div>Type</div>
+        <div>Inheritance</div>
+        <div>Description</div>
+    </div>
+
+    <?js props.forEach(function(p){ ?>
+    <div class="row">
+        <div><?js= p.access ?></div>
+        <div><?js= p.name ?></div>
+        <div>
+            <?js=
+                    ( p.type && p.type.names && p.type.names.length ) ? p.type.names[0] : "Not found"
+            ?>
+        </div>
+        <div><?js= p.memberof ?></div>
+        <div><?js= p.description ?></div>
+    </div>
+    <?js }) ?>
+    <?js }   ?>
+</div>

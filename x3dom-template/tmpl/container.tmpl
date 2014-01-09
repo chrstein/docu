@@ -114,13 +114,17 @@
     <?js
         var members = self.find({kind: 'member', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
         var fields = [];
+        var properties = []
         if (members && members.length && members.forEach)
         {
 
-            members.forEach(function(f)
+            members.forEach(function(m)
             {
-                if(f.field)
-                    fields.push(f);
+                if(m.field)
+                    fields.push(m);
+                else
+                    properties.push(m);
+
             });
         }
 
@@ -129,17 +133,13 @@
 	?>
     <h3 class="subsection-title">Fields</h3>
         <?js= self.partial('classFields.tmpl', fields) ?>
-    <?js } ?>
+    <?js }
+         if(properties.length)
+         {
+     ?>
+    <h3 class="subsection-title">Properties</h3>
+    <?js= self.partial('classProperties.tmpl', properties) ?>
 
-    <?js
-        var members = self.find({kind: 'member', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
-        if (members && members.length && members.forEach) {
-	?>
-        <h3 class="subsection-title">Properties</h3>
-        
-        <dl><?js members.forEach(function(p) { ?>
-            <?js= self.partial('members.tmpl', p) ?>
-        <?js }); ?></dl>
     <?js } ?>
 
     <br>
