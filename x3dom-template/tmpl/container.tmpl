@@ -33,7 +33,7 @@
         } ?>
     </div>
     <div>
-        <h3>Class Properties:</h3>
+        <h3><a href="#Properties">Properties:</a></h3>
         <ul>
             <?js
             var members = self.find({kind: 'member', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
@@ -49,7 +49,7 @@
     </div>
 
     <div>
-        <h3>Class Methods:</h3>
+        <h3><a href="#Methods">Methods:</a></h3>
         <?js
             var methods = self.find({kind: 'function', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
             if (methods && methods.length && methods.forEach) {
