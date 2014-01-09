@@ -66,12 +66,13 @@ header
     padding: 0px 9px;
 }
 
+
 .member-container, .method-container
 {
     background-color: #eeeeee;
     border-radius: 5px;
     border: 1px solid #aaaaaa;
-    margin: 3px;
+    margin: 12px;
     padding: 5px;
 
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
