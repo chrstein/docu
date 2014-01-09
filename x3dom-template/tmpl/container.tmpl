@@ -9,67 +9,15 @@
     <?js= self.partial('source.tmpl', doc) ?>
 <?js } else { ?>
 
-<?js if (doc.kind == 'class') { ?>
-<div class="class-summary">
-    <div class="x3d-classification">
-        <?js if (doc.x3d) { ?>
-             <div class="x3d-propdesc">
-                X3D:
-                <div class="x3d-value "><a href="http://derp.org"><?js= doc.x3d ?></a></div>
-            </div>
-        <?js } ?>
-        <?js if (doc.component) { ?>
-            <div class="x3d-propdesc">
-                Component:
-                <div class="x3d-component"><a href="http://derp.org"><?js= doc.component ?></a></div>
-            </div>
-        <?js } ?>
-        <?js
-        if (doc.status)
-        {
-            var class = (doc.status == "full")
-            ? "status-full"
-            : (doc.status == "experimental" ? "status-experimental" : "status-unsupported");
-        ?>
-            <div class="x3d-propdesc">
-                Status:
-                <div class="<?js= class ?>"><?js= doc.status ?></div>
-            </div>
-        <?js
-        } ?>
-    </div>
-    <div class="propertiesOverviewContainer">
-        <h3><a href="#Properties">Properties:</a></h3>
-        <ul>
-            <?js
-            var members = self.find({kind: 'member', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
-            if (members && members.length && members.forEach) {
-        ?>
-            <?js members.forEach(function(p) { ?>
-            <li>
-                <a href="#<?js= p.name ?>"><?js= p.name ?> </a>
-            </li>
-            <?js }); ?>
-        </ul>
-        <?js } ?>
-    </div>
-
-    <div class="methodOverviewContainer">
-        <h3><a href="#Methods">Methods:</a></h3>
-        <?js
-            var methods = self.find({kind: 'function', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
-            if (methods && methods.length && methods.forEach) {
-        ?>
-        <ul><?js methods.forEach(function(m) { ?>
-            <li>
-                <a href="#<?js= m.name ?>"><?js= m.name ?> </a>
-            </li>
-            <?js }); ?>
-        </ul>
-        <?js } ?>
-    </div>
-
-</div>
+<?js if (doc.kind == 'class') {
+    var data =
+    {
+        self: self,
+        doc : doc,
+        title: title
+    };
+    ?>
+    <?js= self.partial('classSummary.tmpl', data) ?>
 <?js } ?>
 
 <section>
@@ -162,16 +110,36 @@
             <dd><?js if (n.summary) { ?><?js= n.summary ?><?js } ?></dd>
         <?js }); ?></dl>
     <?js } ?>
-    
+
     <?js
         var members = self.find({kind: 'member', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
-        if (members && members.length && members.forEach) {
+        var fields = [];
+        var properties = []
+        if (members && members.length && members.forEach)
+        {
+
+            members.forEach(function(m)
+            {
+                if(m.field)
+                    fields.push(m);
+                else
+                    properties.push(m);
+
+            });
+        }
+
+        if(fields.length)
+        {
 	?>
-        <h3 class="subsection-title"><a name="Properties">Properties</a></h3>
-        
-        <dl><?js members.forEach(function(p) { ?>
-            <?js= self.partial('members.tmpl', p) ?>
-        <?js }); ?></dl>
+    <h3 class="subsection-title"><a name="Fields">Fields</a></h3>
+        <?js= self.partial('classFields.tmpl', fields) ?>
+    <?js }
+         if(properties.length)
+         {
+     ?>
+    <h3 class="subsection-title"><a name="Properties">Properties</a></h3>
+    <?js= self.partial('classProperties.tmpl', properties) ?>
+
     <?js } ?>
 
     <br>

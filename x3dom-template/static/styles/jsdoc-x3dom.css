@@ -216,6 +216,11 @@ h4
     padding: 8px;
 }
 
+h4 a
+{
+    color: white;
+}
+
 h5, .container-overview .subsection-title
 {
     font-size: 110%;
@@ -284,7 +289,6 @@ h6
 .prettyprint code
 {
     font-family: Consolas, 'Lucida Console', Monaco, monospace;
-    font-size: 100%;
     line-height: 18px;
     display: block;
     padding: 4px 12px;
@@ -296,73 +300,39 @@ h6
 
 .params
 {
-    background: #eeeeee;
-    border-radius: 5px;
-    border: 1px solid #aaaaaa;
     margin: 0;
     padding: 0;
     display:inline-block;
+    border-radius:5px;
+    border: 1px solid #aaaaaa;
+    background: #eeeeee;
 }
 
+.params table > :first-child > tr:first-of-type > :first-child { border-radius: 5px 0 0 0 }
+.params table > :first-child > tr:first-of-type > :last-child { border-radius: 0 5px 0 0 }
+.params table > :last-child > tr:last-of-type > :first-child { border-radius: 0 0 0 5px }
+.params table > :last-child > tr:last-of-type > :last-child { border-radius: 0 0 5px 0 }
 
 .params table
 {
-    border-width:0;
     border-collapse: collapse;
 }
 
-.params tbody, tr
+.param-table-name
 {
-    padding:0;
-
+    font-size:125%;
 }
 
-.params thead
+.params th
 {
-   margin:0;
-   background: #dddddd;
+    background: #dddddd;
 }
 
 .params td, th
 {
-    border: 1px solid #aaaaaa;
-    margin:0;
-    padding:4px;
-    /*background: #dddddd;*/
+    padding:8px 12px;
 }
 
-/*
-.params .name, .props .name, .name code {
-  color: #004292;
-  font-family: Consolas, 'Lucida Console', Monaco, monospace;
-  font-size: 100%;
-}
-
-.params td, .params th, .props td, .props th
-{
-  border: 1px solid #ddd;
-  margin: 0px;
-  text-align: left;
-  vertical-align: top;
-  padding: 4px 6px;
-  display: table-cell;
-}
-
-.params thead tr, .props thead tr
-{
-  background-color: #ddd;
-  font-weight: bold;
-}
-
-.params .params thead tr, .props .props thead tr
-{
-  background-color: #fff;
-  font-weight: bold;
-}
-
-.params th, .props th { border-right: 1px solid #aaa; }
-.params thead .last, .props thead .last { border-right: 1px solid #ddd; }
- */
 .disabled {
     color: #454545;
 }

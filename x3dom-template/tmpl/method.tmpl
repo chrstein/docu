@@ -37,9 +37,7 @@ var self = this;
         <h5>Parameters:</h5>
         <?js= this.partial('params.tmpl', params) ?>
     <?js } ?>
-    
-    <?js= this.partial('details.tmpl', data) ?>
-    
+
     <?js if (data.fires && fires.length) { ?>
     <h5>Fires:</h5>
     <ul><?js fires.forEach(function(f) { ?>
@@ -60,6 +58,7 @@ var self = this;
     } } ?>
     
     <?js if (data.returns && returns.length) { ?>
+    <br>
     <h5>Returns:</h5>
     <?js if (returns.length > 1) { ?><ul><?js
         returns.forEach(function(r) { ?>
@@ -75,5 +74,7 @@ var self = this;
         <h5>Example<?js= examples.length > 1? 's':'' ?></h5>
         <?js= this.partial('examples.tmpl', examples) ?>
     <?js } ?>
+
+    <?js= this.partial('details.tmpl', data) ?>
 </dd>
 </div>
