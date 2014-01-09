@@ -25,11 +25,11 @@ exports.defineTags = function(dictionary)
     //member is a SF/MF-field
     dictionary.defineTag('field',
     {
-        mustHaveValue: false,
+        mustHaveValue: true,
         onTagged: function(doclet, tag)
         {
             if(tag)
-                doclet.field = true;
+                doclet.field = tag.value;
         }
     });
 

@@ -119,7 +119,8 @@ x3dom.registerNodeType(
         /**
 		 * @var {x3dom.nodeType.X3DMetadataObject} metadata
 		 * @memberof x3dom.nodeTypes.X3DNode
-		 * @instance
+         * @field x3d
+         * @instance
 		 */
 		this.addField_SFNode('metadata', x3dom.nodeTypes.X3DMetadataObject);
     },
@@ -408,6 +409,7 @@ x3dom.registerNodeType(
              * the name of the meta data object
              * @var {x3dom.fields.SFString} name
              * @memberof x3dom.nodeTypes.X3DMetadataObject
+             * @field x3d
              * @instance
              */
             this.addField_SFString(ctx, 'name', "");
@@ -416,6 +418,7 @@ x3dom.registerNodeType(
              * the reference name of the meta data object ?
              * @var {x3dom.fields.SFString} reference
              * @memberof x3dom.nodeTypes.X3DMetadataObject
+             * @field x3d
              * @instance
              */
             this.addField_SFString(ctx, 'reference', "");
@@ -443,8 +446,8 @@ x3dom.registerNodeType(
             /**
              * boolean values of the meta data node
              * @var {x3dom.fields.MFBoolean} value
-             * @field
              * @memberof x3dom.nodeTypes.MetadataBoolean
+             * @field x3d
              * @instance
              * @x3d 2.1
              */
@@ -471,6 +474,7 @@ x3dom.registerNodeType(
              * float values of the meta data node
              * @var {x3dom.fields.MFFloat} value
              * @memberof x3dom.nodeTypes.MetadataFloat
+             * @field x3d
              * @instance
              */
             this.addField_MFFloat(ctx, 'value', []);
@@ -497,6 +501,7 @@ x3dom.registerNodeType(
              * name of the field node
              * @var {x3dom.fields.SFString} name
              * @memberof x3dom.nodeTypes.Field
+             * @field x3d
              * @instance
              */
             this.addField_SFString(ctx, 'name', "");
@@ -505,6 +510,7 @@ x3dom.registerNodeType(
              * type of the field node
              * @var {x3dom.fields.SFString} type
              * @memberof x3dom.nodeTypes.Field
+             * @field x3d
              * @instance
              */
             this.addField_SFString(ctx, 'type', "");
@@ -513,6 +519,7 @@ x3dom.registerNodeType(
              * value of the field node
              * @var {x3dom.fields.SFString} value
              * @memberof x3dom.nodeTypes.Field
+             * @field x3d
              * @instance
              */
             this.addField_SFString(ctx, 'value', "");
@@ -572,6 +579,7 @@ x3dom.registerNodeType(
              * render status of the node
              * @var {x3dom.fields.SFBool} render
              * @memberof x3dom.nodeTypes.X3DBoundedNode
+             * @field x3dom
              * @instance
              */
             this.addField_SFBool(ctx, 'render', true);
@@ -580,6 +588,7 @@ x3dom.registerNodeType(
              * center of the nodes bounding volume
              * @var {x3dom.fields.SFVec3f} bboxCenter
              * @memberof x3dom.nodeTypes.X3DBoundedNode
+             * @field x3d
              * @instance
              */
             this.addField_SFVec3f(ctx, 'bboxCenter', 0, 0, 0);
@@ -588,6 +597,7 @@ x3dom.registerNodeType(
              * size of the nodes bounding volume
              * @var {x3dom.fields.SFVec3f} bboxSize
              * @memberof x3dom.nodeTypes.X3DBoundedNode
+             * @field x3d
              * @instance
              */
             this.addField_SFVec3f(ctx, 'bboxSize', -1, -1, -1);

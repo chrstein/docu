@@ -110,7 +110,27 @@
             <dd><?js if (n.summary) { ?><?js= n.summary ?><?js } ?></dd>
         <?js }); ?></dl>
     <?js } ?>
-    
+
+    <?js
+        var members = self.find({kind: 'member', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
+        var fields = [];
+        if (members && members.length && members.forEach)
+        {
+
+            members.forEach(function(f)
+            {
+                if(f.field)
+                    fields.push(f);
+            });
+        }
+
+        if(fields.length)
+        {
+	?>
+    <h3 class="subsection-title">Fields</h3>
+        <?js= self.partial('classFields.tmpl', fields) ?>
+    <?js } ?>
+
     <?js
         var members = self.find({kind: 'member', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
         if (members && members.length && members.forEach) {

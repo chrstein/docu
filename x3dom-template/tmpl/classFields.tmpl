@@ -1,0 +1,31 @@
+<?js
+    var fields = obj;
+?>
+
+<div>
+    <?js
+         if (fields && fields.length )
+         {
+    ?>
+        <div class="row">
+            <div>Name</div>
+            <div>Type</div>
+            <div>Inheritance</div>
+            <div>Description</div>
+        </div>
+
+        <?js fields.forEach(function(f){ ?>
+        <?js console.log(f); ?>
+        <div class="row">
+            <div><?js= f.name ?></div>
+            <div>
+            <?js=
+                    ( f.type && f.type.names && f.type.names.length ) ? f.type.names[0] : "Not found"
+            ?>
+            </div>
+            <div><?js= f.name ?></div>
+            <div><?js= f.description ?></div>
+            </div>
+        <?js }) ?>
+    <?js }   ?>
+</div>

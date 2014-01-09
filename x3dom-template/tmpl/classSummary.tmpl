@@ -30,29 +30,31 @@ var title = obj.title;
     <div>
         <?js
             var members = self.find({kind: 'member',  memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
-            var fields = false;
+            var fields = [];
             if (members && members.length && members.forEach)
             {
-                members.forEach(function(p)
+                members.forEach(function(m)
                 {
-                    if(p.field && p.field == true)
-                        fields = true;
+                    if(m.field)
+                        fields.push(m);
                 });
             }
-            if( fields === true )
+            if( fields.length )
             {
         ?>
-        <h3>Class Fields:</h3>
-        <ul>
-        <?js
-            members.forEach(function(p) {
-            if(p.field && p.field == true)
-             ?>
-            <li>
-                <a href="#<?js= p.name ?>"><?js= p.name ?> </a>
-            </li>
-            <?js }); ?>
-        </ul>
+            <h3>Fields:</h3>
+            <ul>
+                <?js
+                    fields.forEach(function(f)
+                    {
+                ?>
+                    <li>
+                        <a href="#<?js= f.name ?>"><?js= f.name ?> </a>
+                    </li>
+                <?js
+                    });
+                ?>
+            </ul>
         <?js } ?>
     </div>
 
@@ -61,7 +63,7 @@ var title = obj.title;
             var members = self.find({kind: 'member',  memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
             if (members && members.length && members.forEach) {
         ?>
-        <h3>Class Properties:</h3>
+        <h3>Properties:</h3>
         <ul>
         <?js members.forEach(function(p) {
             if(p.field == undefined)
@@ -83,7 +85,7 @@ var title = obj.title;
             var methods = self.find({kind: 'function',  memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
             if (methods && methods.length && methods.forEach) {
         ?>
-        <h3>Class Methods:</h3>
+        <h3>Methods:</h3>
         <ul>
             <?js methods.forEach(function(m) { ?>
             <li>
