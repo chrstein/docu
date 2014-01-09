@@ -25,10 +25,10 @@ var self = this;
     <?js } ?>
 
     <?js if (data.inherited && data.inherits) { ?>
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
+    <dt>Inherited From:</dt>
+    <dd>
         <?js= this.linkto(data.inherits, this.htmlsafe(data.inherits)) ?>
-    </li></dd>
+    </dd>
     <?js } ?>
     
     <?js if (data.deprecated) { ?>

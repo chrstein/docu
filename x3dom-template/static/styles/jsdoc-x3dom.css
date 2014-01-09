@@ -17,15 +17,12 @@ header
 
 #docu-navbar
 {
-    background: -webkit-linear-gradient(#EEEEEE, #BBBBBB);
-    background: -o-linear-gradient(#EEEEEE, #BBBBBB);
-    background: -moz-linear-gradient(#EEEEEE, #BBBBBB);
-    background: linear-gradient(#EEEEEE, #BBBBBB);
-    border-style:none;
-    border-color:#B9B9B9;
-    border-width:1px 0px;
+    background: -webkit-linear-gradient(#DDDDDD, #888888);
+    background: -o-linear-gradient(#DDDDDD, #888888);
+    background: -moz-linear-gradient(#DDDDDD, #888888);
+    background: linear-gradient(#DDDDDD, #888888);
     text-align:center;
-    padding:2px;
+    padding:6px;
 }
 
 #docu-navbar a
@@ -37,29 +34,20 @@ header
 .docu-navitem
 {
     display:inline-block;
-    padding:6px 16px 8px 16px;
-    border-width: 1px;
-    border-style: hidden;
-    border-color: #888888;
-    border-radius: 3px;
+    padding:4px 16px;
+    font-weight:bold;
+    color:#444;
+    
+    margin:1px;
 }
 
 .docu-navitem:hover, .docu-navitem-active
 {
-    /*background:#EEEEEE;
-    border-style: solid;
-    padding:5px 7px 7px 7px;*/
-    text-decoration: underline;
+    color:#EEEEEE   
 }
 
-.docu-navitem-active, .docu-navitem-active:hover
-{
-    /*background: -webkit-linear-gradient(#BBBBBB, #EEEEEE);
-    background: -o-linear-gradient(#BBBBBB, #EEEEEE);
-    background: -moz-linear-gradient(#BBBBBB, #EEEEEE);
-    background: linear-gradient(#BBBBBB, #EEEEEE);
-    */
-    font-weight: bold;
+.docu-navitem-active
+{    
 }
 
 .class-description {
@@ -78,13 +66,18 @@ header
     padding: 0px 9px;
 }
 
-.method-container
+
+.member-container, .method-container
 {
-    background-color: #dddddd;
+    background-color: #eeeeee;
     border-radius: 5px;
-    border: 1px dotted black;
-    margin: 3px;
+    border: 1px solid #aaaaaa;
+    margin: 12px;
     padding: 5px;
+
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: rgba(0, 0, 0, 0.15) 5px 5px 5px;
+    -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
 }
 
 section
@@ -144,6 +137,7 @@ h3
 
 h4
 {
+    margin:0;
     font-size: 120%;
     font-weight: bold;
     padding: 4px 0 0;
@@ -189,16 +183,9 @@ h6
 }
 
 .details { margin-top: 14px; }
-.details dt { width:100px; float:left; border-left: 2px solid #DDD; padding-left: 10px;  padding-top: 6px; }
-.details dd { margin-left: 50px; }
-.details ul { margin: 0; }
-.details ul { list-style-type: none; }
-.details li { margin-left: 30px; padding-top: 6px; }
+.details dt, dd { display:inline; }
 
 .description {
-    margin-bottom: 1em;
-    margin-left: -16px;
-    margin-top: 1em;
 }
 
 .code-caption
