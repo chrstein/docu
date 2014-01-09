@@ -13,12 +13,16 @@
 <div class="class-summary">
     <div class="x3d-classification">
         <?js if (doc.x3d) { ?>
-            <div class="x3d-propname">X3D: </div>
-            <div class="x3d-value "><?js= doc.x3d ?></div>
+             <div class="x3d-propdesc">
+                X3D:
+                <div class="x3d-value "><a href="http://derp.org"><?js= doc.x3d ?></a></div>
+            </div>
         <?js } ?>
         <?js if (doc.component) { ?>
-            <div class="x3d-propname">Component: </div>
-            <div class="x3d-component"><?js= doc.component ?></div>
+            <div class="x3d-propdesc">
+                Component:
+                <div class="x3d-component"><a href="http://derp.org"><?js= doc.component ?></a></div>
+            </div>
         <?js } ?>
         <?js
         if (doc.status)
@@ -27,12 +31,14 @@
             ? "status-full"
             : (doc.status == "experimental" ? "status-experimental" : "status-unsupported");
         ?>
-            <div class="x3d-propname">Status: </div>
-            <div class="<?js= class ?>"><?js= doc.status ?></div>
+            <div class="x3d-propdesc">
+                Status:
+                <div class="<?js= class ?>"><?js= doc.status ?></div>
+            </div>
         <?js
         } ?>
     </div>
-    <div>
+    <div class="propertiesOverviewContainer">
         <h3><a href="#Properties">Properties:</a></h3>
         <ul>
             <?js
@@ -48,7 +54,7 @@
         <?js } ?>
     </div>
 
-    <div>
+    <div class="methodOverviewContainer">
         <h3><a href="#Methods">Methods:</a></h3>
         <?js
             var methods = self.find({kind: 'function', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
@@ -161,7 +167,7 @@
         var members = self.find({kind: 'member', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
         if (members && members.length && members.forEach) {
 	?>
-        <h3 class="subsection-title">Properties</h3>
+        <h3 class="subsection-title"><a name="Properties">Properties</a></h3>
         
         <dl><?js members.forEach(function(p) { ?>
             <?js= self.partial('members.tmpl', p) ?>
@@ -174,7 +180,7 @@
         var methods = self.find({kind: 'function', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
         if (methods && methods.length && methods.forEach) { 
     ?>
-        <h3 class="subsection-title">Methods</h3>
+        <h3 class="subsection-title"><a name="Methods">Methods</a></h3>
         
         <dl><?js methods.forEach(function(m) { ?>
             <?js= self.partial('method.tmpl', m) ?>

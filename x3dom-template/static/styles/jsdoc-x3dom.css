@@ -11,8 +11,7 @@ header
 
 #main
 {
-    float: left;
-    width: 100%;
+
 }
 
 #docu-navbar
@@ -66,10 +65,65 @@ header
     padding: 0px 9px;
 }
 
-
-.member-container, .method-container
+.x3d-classification
 {
-    background-color: #eeeeee;
+    font-weight: bold;
+}
+
+.x3d-propdesc
+{
+    padding:4px;
+}
+
+.x3d-value, .x3d-component
+{
+    display:inline;
+}
+
+.x3d-value
+{
+}
+
+.x3d-component
+{
+}
+
+.status-full, .status-experimental, .status-unsupported
+{
+    display:inline;
+    border-radius: 5px;
+    border: 1px solid;
+    padding:1px 3px;
+}
+
+.status-full
+{
+    background: #69c467;
+    border-color: #1f7d1f;
+    color: #164d16;
+}
+
+.status-experimental
+{
+    background: #ffec59;
+    border-color: #D5B500;
+    color: #817c36;
+}
+
+.status-unsupported
+{
+    background: #ff5f62;
+    border-color: #c6413a;
+    color: #742828;
+}
+
+.member-container, .method-container, .x3d-classification, .methodOverviewContainer, .propertiesOverviewContainer
+{
+    background: -webkit-linear-gradient(#eeeeee, #dddddd);
+    background: -o-linear-gradient(#eeeeee, #dddddd);
+    background: -moz-linear-gradient(#eeeeee, #dddddd);
+    background: linear-gradient(#eeeeee, #dddddd);
+
     border-radius: 5px;
     border: 1px solid #aaaaaa;
     margin: 12px;
@@ -78,6 +132,12 @@ header
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: rgba(0, 0, 0, 0.15) 5px 5px 5px;
     -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+}
+
+.methodOverviewContainer ul, .propertiesOverviewContainer ul
+{
+    list-style: none;
+    padding:3px;
 }
 
 section
@@ -116,9 +176,13 @@ h1
     padding: 6px;
     background:#EEEEEE;
     border-style:solid;
-    border-color:#AAAAAA;
+    border-color:#aaaaaa;
     border-width:1px 0;
     text-align:center;
+
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: rgba(0, 0, 0, 0.15) 5px 5px 5px;
+    -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
 }
 
 h2
@@ -130,6 +194,7 @@ h2
 
 h3
 {
+    margin:4px;
     font-size: 130%;
     font-weight: bold;
     padding: 5px 0 0;
@@ -137,10 +202,18 @@ h3
 
 h4
 {
-    margin:0;
+    background: -webkit-linear-gradient(rgb(0, 75, 188), rgb(0, 28, 62));
+    background: -o-linear-gradient(rgb(0, 75, 188), rgb(0, 28, 62));
+    background: -moz-linear-gradient(rgb(0, 75, 188), rgb(0, 28, 62));
+    background: linear-gradient(rgb(0, 75, 188), rgb(0, 28, 62));
+    color:white;
+
+    border-radius: 5px 5px 0 0;
+
+    margin:-6px;
     font-size: 120%;
     font-weight: bold;
-    padding: 4px 0 0;
+    padding: 8px;
 }
 
 h5, .container-overview .subsection-title
@@ -148,6 +221,7 @@ h5, .container-overview .subsection-title
     font-size: 110%;
     font-weight: bold;
     padding: 3px 0 0;
+    margin:4px 0;
 }
 
 h6
@@ -175,7 +249,7 @@ h6
 }
 
 .type-signature {
-    color: #aaa;
+    color: #eeeeee;
 }
 
 .name, .signature {
@@ -220,44 +294,75 @@ h6
     border-left: 3px #ddd solid;
 }
 
-.params, .props
+.params
 {
-    border-spacing: 0;
-    border: 0;
+    background: #eeeeee;
+    border-radius: 5px;
+    border: 1px solid #aaaaaa;
+    margin: 0;
+    padding: 0;
+    display:inline-block;
+}
+
+
+.params table
+{
+    border-width:0;
     border-collapse: collapse;
 }
 
+.params tbody, tr
+{
+    padding:0;
+
+}
+
+.params thead
+{
+   margin:0;
+   background: #dddddd;
+}
+
+.params td, th
+{
+    border: 1px solid #aaaaaa;
+    margin:0;
+    padding:4px;
+    /*background: #dddddd;*/
+}
+
+/*
 .params .name, .props .name, .name code {
-    color: #004292;
-    font-family: Consolas, 'Lucida Console', Monaco, monospace;
-    font-size: 100%;
+  color: #004292;
+  font-family: Consolas, 'Lucida Console', Monaco, monospace;
+  font-size: 100%;
 }
 
 .params td, .params th, .props td, .props th
 {
-    border: 1px solid #ddd;
-    margin: 0px;
-    text-align: left;
-    vertical-align: top;
-    padding: 4px 6px;
-    display: table-cell;
+  border: 1px solid #ddd;
+  margin: 0px;
+  text-align: left;
+  vertical-align: top;
+  padding: 4px 6px;
+  display: table-cell;
 }
 
 .params thead tr, .props thead tr
 {
-    background-color: #ddd;
-    font-weight: bold;
+  background-color: #ddd;
+  font-weight: bold;
 }
 
 .params .params thead tr, .props .props thead tr
 {
-    background-color: #fff;
-    font-weight: bold;
+  background-color: #fff;
+  font-weight: bold;
 }
 
 .params th, .props th { border-right: 1px solid #aaa; }
 .params thead .last, .props thead .last { border-right: 1px solid #ddd; }
-
+ */
 .disabled {
     color: #454545;
 }
