@@ -41,7 +41,7 @@ var title = obj.title;
         } ?>
     </div>
 
-    <div>
+    <div class="overviewContainer">
         <?js
             var members = self.find({kind: 'member',  memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
             var fields = [];
@@ -72,7 +72,7 @@ var title = obj.title;
         <?js } ?>
     </div>
 
-    <div>
+    <div class="overviewContainer">
             <?js
             var members = self.find({kind: 'member',  memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
             if (members && members.length && members.forEach) {
@@ -94,7 +94,7 @@ var title = obj.title;
         <?js } ?>
     </div>
 
-    <div>
+    <div class="overviewContainer">
         <?js
             var methods = self.find({kind: 'function',  memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
             if (methods && methods.length && methods.forEach) {

@@ -69,7 +69,6 @@
     <?js } ?>
     </div>
 
-    <br>
 
     <?js if (doc.mixes && doc.mixes.length) { ?>
         <h3 class="subsection-title">Mixes In</h3>
@@ -101,7 +100,7 @@
     
     <?js
         var namespaces = self.find({kind: 'namespace', memberof: doc.longname}); 
-        if (doc.kind !== 'globalobj' && namespaces && namespaces.length) { 
+        if (doc.kind !== 'globalobj' && namespaces && namespaces.length) {
     ?>
         <h3 class="subsection-title">Namespaces</h3>
         
@@ -131,6 +130,7 @@
         if(fields.length)
         {
 	?>
+    <br>
     <h3 class="subsection-title"><a name="Fields">Fields</a></h3>
         <?js= self.partial('classFields.tmpl', fields) ?>
     <?js }
@@ -138,17 +138,19 @@
          {
      ?>
     <br>
+    <br>
     <h3 class="subsection-title"><a name="Properties">Properties</a></h3>
     <?js= self.partial('classProperties.tmpl', properties) ?>
 
     <?js } ?>
 
-    <br>
 
     <?js
         var methods = self.find({kind: 'function', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
         if (methods && methods.length && methods.forEach) { 
     ?>
+        <br>
+        <br>
         <h3 class="subsection-title"><a name="Methods">Methods</a></h3>
         
         <dl><?js methods.forEach(function(m) { ?>

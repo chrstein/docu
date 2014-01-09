@@ -62,7 +62,7 @@ header
     margin-right: 0px;
     width: 300px;
     border-left: 1px solid #ccc;
-    padding: 0px 9px;
+    padding: 10px 40px;
 }
 
 .x3d-classification
@@ -117,7 +117,7 @@ header
     color: #742828;
 }
 
-.member-container, .method-container, .x3d-classification, .methodOverviewContainer, .propertiesOverviewContainer,
+.member-container, .method-container, .x3d-classification, .overviewContainer,
  .dataMemberOverviewContainer
 {
     background: -webkit-linear-gradient(#eeeeee, #dddddd);
@@ -135,7 +135,7 @@ header
     -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
 }
 
-.methodOverviewContainer ul, .propertiesOverviewContainer ul
+.overviewContainer ul
 {
     list-style: none;
     padding:3px;
@@ -144,7 +144,7 @@ header
 .dataMemberOverviewContainer
 {
     display: inline-block;
-    padding: 4px 16px;
+    padding: 8px 24px;
 }
 
 .row
@@ -155,13 +155,13 @@ header
 .head-row
 {
     font-weight: bold;
-    font-size:125%;
+    font-size:120%;
     display: table-row;
 }
 
 .cell, .head-cell
 {
-    padding:12px;
+    padding:12px 16px;
     display: table-cell;
 }
 
@@ -173,7 +173,7 @@ header
 .table-fieldname
 {
     font-style: italic;
-    font-size:125%;
+    font-size:120%;
 }
 
 section
@@ -181,7 +181,7 @@ section
     display: block;
     padding: 6px 12px;
     border-bottom: 1px solid #ccc;
-    margin-right: 320px;
+    margin-right: 420px;
 }
 
 .variation {
@@ -356,7 +356,7 @@ h6
 
 .param-table-name
 {
-    font-size:125%;
+    font-size:120%;
 }
 
 .params th
