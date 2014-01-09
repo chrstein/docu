@@ -117,7 +117,8 @@ header
     color: #742828;
 }
 
-.member-container, .method-container, .x3d-classification, .methodOverviewContainer, .propertiesOverviewContainer
+.member-container, .method-container, .x3d-classification, .methodOverviewContainer, .propertiesOverviewContainer,
+ .dataMemberOverviewContainer
 {
     background: -webkit-linear-gradient(#eeeeee, #dddddd);
     background: -o-linear-gradient(#eeeeee, #dddddd);
@@ -138,6 +139,41 @@ header
 {
     list-style: none;
     padding:3px;
+}
+
+.dataMemberOverviewContainer
+{
+    display: inline-block;
+    padding: 4px 16px;
+}
+
+.row
+{
+    display: table-row;
+}
+
+.head-row
+{
+    font-weight: bold;
+    font-size:125%;
+    display: table-row;
+}
+
+.cell, .head-cell
+{
+    padding:12px;
+    display: table-cell;
+}
+
+.cell
+{
+    border-top: 1px solid #aaaaaa;
+}
+
+.table-fieldname
+{
+    font-style: italic;
+    font-size:125%;
 }
 
 section

@@ -44,7 +44,7 @@
     <?js } ?>
 
     <?js if (doc.augments && doc.augments.length) { ?>
-        <h3 class="subsection-title">Extends</h3>
+        <h3 class="subsection-title">Inherits</h3>
 
         <ul><?js doc.augments.forEach(function(a) { ?>
             <li><?js= self.linkto(a, a) ?></li>
@@ -137,6 +137,7 @@
          if(properties.length)
          {
      ?>
+    <br>
     <h3 class="subsection-title"><a name="Properties">Properties</a></h3>
     <?js= self.partial('classProperties.tmpl', properties) ?>
 
