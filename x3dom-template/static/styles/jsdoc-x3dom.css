@@ -11,8 +11,7 @@ header
 
 #main
 {
-    float: left;
-    width: 100%;
+
 }
 
 #docu-navbar
@@ -63,13 +62,69 @@ header
     margin-right: 0px;
     width: 300px;
     border-left: 1px solid #ccc;
-    padding: 0px 9px;
+    padding: 10px 40px;
 }
 
-
-.member-container, .method-container
+.x3d-classification
 {
-    background-color: #eeeeee;
+    font-weight: bold;
+}
+
+.x3d-propdesc
+{
+    padding:4px;
+}
+
+.x3d-value, .x3d-component
+{
+    display:inline;
+}
+
+.x3d-value
+{
+}
+
+.x3d-component
+{
+}
+
+.status-full, .status-experimental, .status-unsupported
+{
+    display:inline;
+    border-radius: 5px;
+    border: 1px solid;
+    padding:1px 3px;
+}
+
+.status-full
+{
+    background: #69c467;
+    border-color: #1f7d1f;
+    color: #164d16;
+}
+
+.status-experimental
+{
+    background: #ffec59;
+    border-color: #D5B500;
+    color: #817c36;
+}
+
+.status-unsupported
+{
+    background: #ff5f62;
+    border-color: #c6413a;
+    color: #742828;
+}
+
+.member-container, .method-container, .x3d-classification, .overviewContainer,
+ .dataMemberOverviewContainer
+{
+    background: -webkit-linear-gradient(#eeeeee, #dddddd);
+    background: -o-linear-gradient(#eeeeee, #dddddd);
+    background: -moz-linear-gradient(#eeeeee, #dddddd);
+    background: linear-gradient(#eeeeee, #dddddd);
+
     border-radius: 5px;
     border: 1px solid #aaaaaa;
     margin: 12px;
@@ -80,12 +135,53 @@ header
     -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
 }
 
+.overviewContainer ul
+{
+    list-style: none;
+    padding:3px;
+}
+
+.dataMemberOverviewContainer
+{
+    display: inline-block;
+    padding: 8px 24px;
+}
+
+.row
+{
+    display: table-row;
+}
+
+.head-row
+{
+    font-weight: bold;
+    font-size:120%;
+    display: table-row;
+}
+
+.cell, .head-cell
+{
+    padding:12px 16px;
+    display: table-cell;
+}
+
+.cell
+{
+    border-top: 1px solid #aaaaaa;
+}
+
+.table-fieldname
+{
+    font-style: italic;
+    font-size:120%;
+}
+
 section
 {
     display: block;
     padding: 6px 12px;
     border-bottom: 1px solid #ccc;
-    margin-right: 320px;
+    margin-right: 420px;
 }
 
 .variation {
@@ -116,9 +212,13 @@ h1
     padding: 6px;
     background:#EEEEEE;
     border-style:solid;
-    border-color:#AAAAAA;
+    border-color:#aaaaaa;
     border-width:1px 0;
     text-align:center;
+
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: rgba(0, 0, 0, 0.15) 5px 5px 5px;
+    -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
 }
 
 h2
@@ -130,6 +230,7 @@ h2
 
 h3
 {
+    margin:4px;
     font-size: 130%;
     font-weight: bold;
     padding: 5px 0 0;
@@ -137,10 +238,23 @@ h3
 
 h4
 {
-    margin:0;
+    background: -webkit-linear-gradient(rgb(0, 75, 188), rgb(0, 28, 62));
+    background: -o-linear-gradient(rgb(0, 75, 188), rgb(0, 28, 62));
+    background: -moz-linear-gradient(rgb(0, 75, 188), rgb(0, 28, 62));
+    background: linear-gradient(rgb(0, 75, 188), rgb(0, 28, 62));
+    color:white;
+
+    border-radius: 5px 5px 0 0;
+
+    margin:-6px;
     font-size: 120%;
     font-weight: bold;
-    padding: 4px 0 0;
+    padding: 8px;
+}
+
+h4 a
+{
+    color: white;
 }
 
 h5, .container-overview .subsection-title
@@ -148,6 +262,7 @@ h5, .container-overview .subsection-title
     font-size: 110%;
     font-weight: bold;
     padding: 3px 0 0;
+    margin:4px 0;
 }
 
 h6
@@ -175,7 +290,7 @@ h6
 }
 
 .type-signature {
-    color: #aaa;
+    color: #eeeeee;
 }
 
 .name, .signature {
@@ -210,7 +325,6 @@ h6
 .prettyprint code
 {
     font-family: Consolas, 'Lucida Console', Monaco, monospace;
-    font-size: 100%;
     line-height: 18px;
     display: block;
     padding: 4px 12px;
@@ -220,43 +334,40 @@ h6
     border-left: 3px #ddd solid;
 }
 
-.params, .props
+.params
 {
-    border-spacing: 0;
-    border: 0;
+    margin: 0;
+    padding: 0;
+    display:inline-block;
+    border-radius:5px;
+    border: 1px solid #aaaaaa;
+    background: #eeeeee;
+}
+
+.params table > :first-child > tr:first-of-type > :first-child { border-radius: 5px 0 0 0 }
+.params table > :first-child > tr:first-of-type > :last-child { border-radius: 0 5px 0 0 }
+.params table > :last-child > tr:last-of-type > :first-child { border-radius: 0 0 0 5px }
+.params table > :last-child > tr:last-of-type > :last-child { border-radius: 0 0 5px 0 }
+
+.params table
+{
     border-collapse: collapse;
 }
 
-.params .name, .props .name, .name code {
-    color: #004292;
-    font-family: Consolas, 'Lucida Console', Monaco, monospace;
-    font-size: 100%;
-}
-
-.params td, .params th, .props td, .props th
+.param-table-name
 {
-    border: 1px solid #ddd;
-    margin: 0px;
-    text-align: left;
-    vertical-align: top;
-    padding: 4px 6px;
-    display: table-cell;
+    font-size:120%;
 }
 
-.params thead tr, .props thead tr
+.params th
 {
-    background-color: #ddd;
-    font-weight: bold;
+    background: #dddddd;
 }
 
-.params .params thead tr, .props .props thead tr
+.params td, th
 {
-    background-color: #fff;
-    font-weight: bold;
+    padding:8px 12px;
 }
-
-.params th, .props th { border-right: 1px solid #aaa; }
-.params thead .last, .props thead .last { border-right: 1px solid #ddd; }
 
 .disabled {
     color: #454545;

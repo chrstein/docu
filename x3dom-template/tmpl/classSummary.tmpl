@@ -11,15 +11,19 @@ var title = obj.title;
             {
                 var link = "http://www.web3d.org/files/specifications/19775-1/V"+ doc.x3d + "/Part01/components/" + doc.component +".html#"+doc.name;
         ?>
-        <div class="x3d-propname">X3D: </div>
-        <div class="x3d-value ">
-            <a href="<?js= link ?>"><?js= doc.x3d ?></a>
+        <div class="x3d-propdesc">
+            X3D:
+            <div class="x3d-value ">
+                <a href="<?js= link ?>"><?js= doc.x3d ?></a>
+            </div>
         </div>
         <?js } ?>
         <?js if (doc.component) { ?>
-        <div class="x3d-propname">Component: </div>
-        <div class="x3d-component">
-            <a href="<?js= doc.component ?>"><?js= doc.component ?></a>
+        <div class="x3d-propdesc">
+            Component:
+            <div class="x3d-component">
+                <a href="<?js= doc.component ?>"><?js= doc.component ?></a>
+            </div>
         </div>
         <?js } ?>
         <?js
@@ -29,13 +33,14 @@ var title = obj.title;
             ? "status-full"
             : (doc.status == "experimental" ? "status-experimental" : "status-unsupported");
         ?>
-        <div class="x3d-propname">Status: </div>
-        <div class="<?js= class ?>"><?js= doc.status ?></div>
+        <div class="x3d-propdesc">Status:
+            <div class="<?js= class ?>"><?js= doc.status ?></div>
+        </div>
         <?js
         } ?>
     </div>
 
-    <div>
+    <div class="overviewContainer">
         <?js
             var members = self.find({kind: 'member',  memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
             var fields = [];
@@ -50,7 +55,7 @@ var title = obj.title;
             if( fields.length )
             {
         ?>
-            <h3>Fields:</h3>
+            <h3><a href="#Fields">Fields:</a></h3>
             <ul>
                 <?js
                     fields.forEach(function(f)
@@ -66,12 +71,12 @@ var title = obj.title;
         <?js } ?>
     </div>
 
-    <div>
+    <div class="overviewContainer">
             <?js
             var members = self.find({kind: 'member',  memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
             if (members && members.length && members.forEach) {
         ?>
-        <h3>Properties:</h3>
+        <h3><a href="#Properties">Properties:</a></h3>
         <ul>
         <?js members.forEach(function(p) {
             if(p.field == undefined)
@@ -88,12 +93,12 @@ var title = obj.title;
         <?js } ?>
     </div>
 
-    <div>
+    <div class="overviewContainer">
         <?js
             var methods = self.find({kind: 'function',  memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
             if (methods && methods.length && methods.forEach) {
         ?>
-        <h3>Methods:</h3>
+        <h3><a href="#Methods">Methods:</a></h3>
         <ul>
             <?js methods.forEach(function(m) { ?>
             <li>

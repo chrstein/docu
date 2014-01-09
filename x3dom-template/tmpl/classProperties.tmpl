@@ -2,29 +2,29 @@
     var props = obj;
 ?>
 
-<div>
+<div class="dataMemberOverviewContainer">
     <?js
          if (props && props.length )
          {
     ?>
-    <div class="row">
-        <div>Access</div>
-        <div>Name</div>
-        <div>Type</div>
-        <div>Inheritance</div>
-        <div>Description</div>
+    <div class="head-row">
+        <span class="head-cell">Access</span>
+        <span class="head-cell">Name</span>
+        <span class="head-cell">Type</span>
+        <span class="head-cell">Inheritance</span>
+        <span class="head-cell">Description</span>
     </div>
 
     <?js props.forEach(function(p){ ?>
     <div class="row">
-        <div><?js= p.access ?></div>
-        <div><?js= p.name ?></div>
-        <div>
+        <span class="cell"><?js= p.access ?></span>
+        <span class="cell"><?js= p.name ?></span>
+        <span class="cell">
             <?js=
                     ( p.type && p.type.names && p.type.names.length ) ? p.type.names[0] : "Not found"
             ?>
-        </div>
-        <div>
+        </span>
+        <span class="cell">
             <?js if(p.inherits)
                  {
                         var inherit = p.inherits.split('#');
@@ -34,8 +34,8 @@
                 ?>
             <a href="<?js= inherit[inherit.length-2] ?>.html"><?js= parent[parent.length-1] ?></a>
             <?js }} ?>
-        </div>
-        <div><?js= p.description ?></div>
+        </span>
+        <span class="cell"><?js= p.description ?></span>
     </div>
     <?js }) ?>
     <?js }   ?>

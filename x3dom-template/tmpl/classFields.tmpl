@@ -2,27 +2,27 @@
     var fields = obj;
 ?>
 
-<div>
+<div class="dataMemberOverviewContainer">
     <?js
          if (fields && fields.length )
          {
     ?>
-        <div class="row">
-            <div>Name</div>
-            <div>Type</div>
-            <div>Inheritance</div>
-            <div>Description</div>
+        <div class="head-row">
+            <span class="head-cell">Name</span>
+            <span class="head-cell">Type</span>
+            <span class="head-cell">Inheritance</span>
+            <span class="head-cell">Description</span>
         </div>
 
         <?js fields.forEach(function(f){ ?>
         <div class="row">
-            <div><?js= f.name ?></div>
-            <div>
+            <span class="cell table-fieldname"><?js= f.name ?></span>
+            <span class="cell">
             <?js=
                     ( f.type && f.type.names && f.type.names.length ) ? f.type.names[0] : "Not found"
             ?>
-            </div>
-            <div>
+            </span>
+            <span class="cell">
                 <?js if(f.inherits)
                      {
                         var inherit = f.inherits.split('#');
@@ -32,9 +32,10 @@
                 ?>
                 <a href="<?js= inherit[inherit.length-2] ?>.html"><?js= parent[parent.length-1] ?></a>
                 <?js }} ?>
-            </div>
-            <div><?js= f.description ?></div>
-            </div>
+            </span>
+                <span class="cell"><?js= f.description ?></span>
+            </span>
+        </div>
         <?js }) ?>
     <?js }   ?>
 </div>
