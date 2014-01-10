@@ -16,6 +16,8 @@
         doc : doc,
         title: title
     };
+
+
     ?>
     <?js= self.partial('classSummary.tmpl', data) ?>
 <?js } ?>
@@ -38,12 +40,50 @@
 </header>
 
 <article>
+    <?js
+        var members = self.find({kind: 'member', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
+        var fields = [];
+        var properties = []
+        if (members && members.length && members.forEach)
+        {
+            members.forEach(function(m)
+            {
+                if(m.field)
+                    fields.push(m);
+                else
+                    properties.push(m);
+
+            });
+        }
+    ?>
+
+
+    <?js
+        if(fields.length)
+        {
+	?>
+        <h3 class="subsection-title">HTML Encoding and Initial Values<a href="#">&#10548;</a></h3>
+        <div>
+            <code>
+                <?js= '&lt;' + doc.name ?>
+
+                <?js fields.forEach(function(f){ ?>
+                    <?js= f.name + '=' + (f.initvalue ? f.initvalue : '\'\'') ?>
+                <?js }); ?>
+
+                <?js= '&gt/&lt;' + doc.name + '&gt' ?>
+            </code>
+        </div>
+    <?js } ?>
+
+
     <div class="container-overview">
     <?js if (doc.kind === 'module' && doc.module) { ?>
         <?js= self.partial('method.tmpl', doc.module) ?>
     <?js } ?>
 
     <?js if (doc.augments && doc.augments.length) { ?>
+        <br>
         <h3 class="subsection-title">Inherits</h3>
 
         <ul><?js doc.augments.forEach(function(a) { ?>
@@ -51,9 +91,9 @@
         <?js }); ?></ul>
     <?js } ?>
 
-    <br>
-
     <?js if (doc.kind === 'class') { ?>
+        <br>
+        <h3 class="subsection-title">Constructor<a href="#">&#10548;</a></h3>
         <?js= self.partial('method.tmpl', doc) ?>
     <?js } else { ?>
         <?js if (doc.description) { ?>
@@ -111,27 +151,19 @@
     <?js } ?>
 
     <?js
-        var members = self.find({kind: 'member', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
-        var fields = [];
-        var properties = []
-        if (members && members.length && members.forEach)
-        {
-
-            members.forEach(function(m)
-            {
-                if(m.field)
-                    fields.push(m);
-                else
-                    properties.push(m);
-
-            });
-        }
-
         if(fields.length)
         {
 	?>
-    <br>
-    <h3 class="subsection-title">Fields<a name="Fields" href="#">&#10548;</a></h3>
+        <br>
+        <h3 class="subsection-title">Fields<a name="Fields" href="#">&#10548;</a></h3>
+
+        <div>
+            These are the X3D / X3DOM fields of this node. Values should usually be received / set as strings via
+            DOM functions (i.e., using
+            <code>setAttribute("myFieldName", "myFieldValue")</code> and
+            <code>getAttribute("myFieldName")</code>).
+        </div>
+
         <?js= self.partial('classFields.tmpl', fields) ?>
     <?js }
          if(properties.length)
@@ -153,9 +185,9 @@
         <br>
         <h3 class="subsection-title">Methods<a name="Methods" href="#">&#10548;</a></h3>
         
-        <dl><?js methods.forEach(function(m) { ?>
+        <?js methods.forEach(function(m) { ?>
             <?js= self.partial('method.tmpl', m) ?>
-        <?js }); ?></dl>
+        <?js }); ?>
     <?js } ?>
     
     <?js

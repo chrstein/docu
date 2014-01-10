@@ -27,7 +27,7 @@ header
 #docu-navbar a
 {
     text-decoration: none;
-    font-size:17px;
+    font-size:125%;
 }
 
 .docu-navitem
@@ -127,8 +127,8 @@ header
 
     border-radius: 5px;
     border: 1px solid #aaaaaa;
-    margin: 12px;
-    padding: 5px;
+    margin: 16px 0;
+    padding: 8px;
 
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: rgba(0, 0, 0, 0.15) 5px 5px 5px;
@@ -149,7 +149,7 @@ header
 .dataMemberOverviewContainer
 {
     display: inline-block;
-    padding: 8px 24px;
+    padding: 8px 16px;
 }
 
 .row
@@ -184,7 +184,7 @@ header
 section
 {
     display: block;
-    padding: 6px 12px;
+    padding: 6px 24px;
     border-bottom: 1px solid #ccc;
     margin-right: 420px;
 }
@@ -212,9 +212,9 @@ footer {
 h1
 {
     margin:0;
-    font-size: 150%;
+    font-size: 130%;
     color:#444;
-    padding: 6px;
+    padding: 8px;
     background:#EEEEEE;
     border-style:solid;
     border-color:#aaaaaa;
@@ -222,21 +222,20 @@ h1
     text-align:center;
 
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: rgba(0, 0, 0, 0.15) 5px 5px 5px;
-    -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 5px;
+    -webkit-box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15);
 }
 
 h2
 {
-    font-size: 140%;
+    font-size: 125%;
     font-weight: bold;
-    margin:6px;
 }
 
 h3
 {
-    margin:8px;
-    font-size: 130%;
+    margin:8px 0;
+    font-size: 120%;
     font-weight: bold;
     padding: 5px 0 0;
 }
@@ -256,7 +255,7 @@ h4
 
     border-radius: 5px 5px 0 0;
 
-    margin:-6px;
+    margin:-9px;
     font-size: 120%;
     font-weight: bold;
     padding: 8px;
@@ -267,7 +266,13 @@ h4 a
     color: white;
 }
 
-h5, .container-overview .subsection-title
+h4 .upwardsLink
+{
+    text-decoration: none;
+    float:right;
+}
+
+h5
 {
     font-size: 110%;
     font-weight: bold;
@@ -307,7 +312,7 @@ h6
     font-family: Consolas, "Lucida Console", Monaco, monospace;
 }
 
-.details { margin-top: 14px; }
+.details { margin:6px 0; }
 .details dt, dd { display:inline; }
 
 .description {

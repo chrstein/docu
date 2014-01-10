@@ -411,6 +411,7 @@ x3dom.registerNodeType(
             /**
              * the name of the meta data object
              * @var {x3dom.fields.SFString} name
+             * @initvalue '""'
              * @memberof x3dom.nodeTypes.X3DMetadataObject
              * @field x3d
              * @instance
@@ -420,6 +421,7 @@ x3dom.registerNodeType(
             /**
              * the reference name of the meta data object ?
              * @var {x3dom.fields.SFString} reference
+             * @initvalue '""'
              * @memberof x3dom.nodeTypes.X3DMetadataObject
              * @field x3d
              * @instance
@@ -436,8 +438,11 @@ x3dom.registerNodeType(
 	defineClass(x3dom.nodeTypes.X3DMetadataObject,
 		/**
 		 * Constructor for MetadataBoolean passing a context object
-		 * @constructs x3dom.nodeTypes.MetadataBoolean
-		 * @extends x3dom.nodeTypes.X3DMetadataObject
+		 * @constructs x3dom.nodeTypes.MetadataBoolean         
+		 *
+         * @classdesc A node for simple boolean metadata.
+         *
+         * @extends x3dom.nodeTypes.X3DMetadataObject
          * @x3d 2.3
          * @component core
          * @status experimental
@@ -451,6 +456,7 @@ x3dom.registerNodeType(
              * @var {x3dom.fields.MFBoolean} value
              * @memberof x3dom.nodeTypes.MetadataBoolean
              * @field x3d
+             * @initvalue '[]'
              * @instance
              * @x3d 2.1
              */

@@ -3,9 +3,9 @@ var data = obj;
 var self = this;
 ?>
 
-<div class="method-container">
+<dl class="method-container">
 <dt>
-    <h4 class="name" id="<?js= id ?>"><?js= data.attribs + name + (kind !== 'event' ? data.signature : '') ?></h4>
+    <h4 class="name" id="<?js= id ?>"><?js= data.attribs + name + (kind !== 'event' ? data.signature : '') ?><a class="upwardsLink" href="#">&#10548;</a></h4>
     <?js if (data.summary) { ?>
     <p class="summary"><?js= summary ?></p>
     <?js } ?>
@@ -58,18 +58,12 @@ var self = this;
     } } ?>
     
     <?js if (data.returns && returns.length) { ?>
-    <br>
-    <h5>Returns:</h5>
-    <?js if (returns.length > 1) { ?><ul><?js
-        returns.forEach(function(r) { ?>
-            <li><?js= self.partial('returns.tmpl', r) ?></li>
-        <?js });
-    ?></ul><?js } else {
-        returns.forEach(function(r) { ?>
-            <?js= self.partial('returns.tmpl', r) ?>
-        <?js });
-    } } ?>
-    
+        <br>
+        <h5>Returns:</h5>
+        <?js returns.forEach(function(r) { ?>
+        <?js= self.partial('returns.tmpl', r) ?>
+        <?js });?>
+    <?js } ?>
     <?js if (data.examples && examples.length) { ?>
         <h5>Example<?js= examples.length > 1? 's':'' ?></h5>
         <?js= this.partial('examples.tmpl', examples) ?>
@@ -77,4 +71,4 @@ var self = this;
 
     <?js= this.partial('details.tmpl', data) ?>
 </dd>
-</div>
+</dl>

@@ -33,6 +33,17 @@ exports.defineTags = function(dictionary)
         }
     });
 
+    //initial, default value of a SF/MF-field
+    dictionary.defineTag('initvalue',
+    {
+        mustHaveValue: true,
+        onTagged: function(doclet, tag)
+        {
+            if(tag)
+                doclet.initvalue = tag.value;
+        }
+    });
+
     //is the object X3D relative
     dictionary.defineTag('x3d',
     {
