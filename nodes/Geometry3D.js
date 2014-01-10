@@ -10,6 +10,7 @@ x3dom.registerNodeType(
          * @constructs x3dom.nodeTypes.X3DSpatialGeometryNode
          * @param {Object} [ctx=null] - context object containing initial settings (namespace).     
          * @abstract
+         * @component Geometry3D
          * @extends x3dom.nodeTypes.X3DGeometryNode
          * @classdesc An abstract base class for spatial geometry nodes.
          *            (For field descriptions, see {@link https://github.com Field Description})         
@@ -31,6 +32,10 @@ x3dom.registerNodeType(
          /**
          * Constructor for Plane Node passing a context object
          * @constructs x3dom.nodeTypes.Plane
+         *
+         * @classdesc A simple plane in 3D space, using a given number of subdivisions for rendering.
+         *
+         * @component Geometry3D
          * @extends x3dom.nodeTypes.X3DSpatialGeometryNode
          * @param {Object} [ctx=null] - context object containing initial settings (namespace).
          * @classdesc A class for a simple plane.
@@ -66,6 +71,10 @@ x3dom.registerNodeType(
          /**
          * Constructor for Box Node passing a context object
          * @constructs x3dom.nodeTypes.Box
+         *
+         * @classdesc A simple 3D box.
+         *
+         * @component Geometry3D
          * @extends x3dom.nodeTypes.X3DSpatialGeometryNode
          * @param {Object} [ctx=null] - context object containing initial settings (namespace).
          * @classdesc A class for a simple Box.

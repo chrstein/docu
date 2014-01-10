@@ -11,7 +11,7 @@ x3dom.registerNodeType(
 	 * Constructor for X3DNode passing a context object
 	 * @constructs x3dom.nodeTypes.X3DNode
      * @x3d 3.2
-     * @component core
+     * @component Core
      * @status full
 	 * @param {Object} [ctx=null] - context object containing initial settings (namespace).
 	 */
@@ -444,7 +444,7 @@ x3dom.registerNodeType(
          *
          * @extends x3dom.nodeTypes.X3DMetadataObject
          * @x3d 2.3
-         * @component core
+         * @component Core
          * @status experimental
 		 * @param {Object} ctx - context object containing initial settings
 		 */

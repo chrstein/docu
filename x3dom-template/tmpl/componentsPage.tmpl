@@ -1,12 +1,21 @@
-<h3 class="subsection-title">Components</h3>
-<?js
-    var self = this;
+<section>
+    <h3 class="subsection-title">Component Index</h3>
+    <div class="overviewContainer">
+    <?js
+        var self = this;
 
-    for(var member in docs)
-    {
-?>
-<a href="<?js= member ?>"><?js= member ?></a>
+        for(var member in docs)
+        {
+    ?>
+        <div>
+            <a href="<?js= member ?>"><?js= member ?></a>
+        </div>
+    <?js
+        };
+    ?>
+    </div>
 
-<?js
-    };
-?>
+    <br>
+    <br>
+
+</section>

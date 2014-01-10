@@ -1,18 +1,44 @@
-<h3 class="subsection-title">List of Classes:</h3>
-<?js
-    var self = this;
+<section>
+    <h3 class="subsection-title">Class Index</h3>
+    <div class="overviewContainer">
+        <?js
+            var self = this;
 
 
-?>
-<dl>
-<?js
-    for(var d in docs)
-    {
-        var c = docs[d];
-?>
-    <dt><?js= self.linkto(c.longname, c.name) ?></dt>
-    <dd><?js if (c.summary) { ?><?js= c.summary ?><?js } ?></dd>
-<?js
-    };
-?>
-</dl>
+        ?>
+        <?js
+            var classList = [];
+
+            for(var d in docs)
+            {
+                classList.push(docs[d]);
+            };
+
+
+            classList.sort(function(a, b){
+                return (a.name == b.name ? 0 : ((a.name < b.name) ? -1 : 1));
+            });
+
+            (function(){
+            var currentChar = '@';
+            for(var i = 0; i < classList.length; ++i)
+            {
+                if (classList[i].name[0].toUpperCase() > currentChar)
+                {
+                    currentChar = classList[i].name[0].toUpperCase();
+                ?>
+                <h4><?js= currentChar ?></h4>
+                <?js } ?>
+            <div>
+                <?js= self.linkto(classList[i].longname, classList[i].name) ?>
+            </div>
+        <?js
+            }
+            })();
+        ?>
+    </div>
+
+    <br>
+    <br>
+
+</section>
