@@ -62,13 +62,13 @@
         if(fields.length)
         {
 	?>
-        <h3 class="subsection-title">HTML Encoding and Initial Values<a href="#">&#10548;</a></h3>
+        <h3 class="subsection-title">HTML Encoding and Default Values<a href="#">&#10548;</a></h3>
         <div>
             <code>
                 <?js= '&lt;' + doc.name ?>
 
                 <?js fields.forEach(function(f){ ?>
-                    <?js= f.name + '=' + (f.initvalue ? f.initvalue : '\'\'') ?>
+                    <?js= f.name + '=\'' + (f.initvalue ? f.initvalue : '') + '\'' ?>
                 <?js }); ?>
 
                 <?js= '&gt/&lt;' + doc.name + '&gt' ?>

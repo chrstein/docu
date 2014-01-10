@@ -10,18 +10,24 @@
         <div class="head-row">
             <span class="head-cell">Name</span>
             <span class="head-cell">Type</span>
+            <span class="head-cell">Default Value</span>
             <span class="head-cell">Inheritance</span>
+            <span class="head-cell">Standard</span>
             <span class="head-cell">Description</span>
         </div>
 
         <?js fields.forEach(function(f){ ?>
         <div class="row">
             <span class="cell table-fieldname"><?js= f.name ?></span>
+
             <span class="cell">
-            <?js=
-                    ( f.type && f.type.names && f.type.names.length ) ? f.type.names[0] : "Not found"
-            ?>
+                <?js=
+                        ( f.type && f.type.names && f.type.names.length ) ? f.type.names[0] : "Not found"
+                ?>
             </span>
+
+            <span class="cell"><?js= (f.initvalue ? f.initvalue : '') ?></span>
+
             <span class="cell">
                 <?js if(f.inherits)
                      {
@@ -33,8 +39,16 @@
                 <a href="<?js= inherit[inherit.length-2] ?>.html"><?js= parent[parent.length-1] ?></a>
                 <?js }} ?>
             </span>
-                <span class="cell"><?js= f.description ?></span>
+
+            <span class="cell">
+                <?js if (f.x3d) { ?>
+                    <img src="images/x3d.png">
+                <?js } else { ?>
+                    <img src="images/x3dom.png">
+                <?js } ?>
             </span>
+
+            <span class="cell"><?js= f.description ?></span>
         </div>
         <?js }) ?>
     <?js }   ?>

@@ -411,7 +411,7 @@ x3dom.registerNodeType(
             /**
              * the name of the meta data object
              * @var {x3dom.fields.SFString} name
-             * @initvalue '""'
+             * @initvalue ""
              * @memberof x3dom.nodeTypes.X3DMetadataObject
              * @field x3d
              * @instance
@@ -421,7 +421,7 @@ x3dom.registerNodeType(
             /**
              * the reference name of the meta data object ?
              * @var {x3dom.fields.SFString} reference
-             * @initvalue '""'
+             * @initvalue ""
              * @memberof x3dom.nodeTypes.X3DMetadataObject
              * @field x3d
              * @instance
@@ -456,7 +456,7 @@ x3dom.registerNodeType(
              * @var {x3dom.fields.MFBoolean} value
              * @memberof x3dom.nodeTypes.MetadataBoolean
              * @field x3d
-             * @initvalue '[]'
+             * @initvalue []
              * @instance
              * @x3d 2.1
              */
