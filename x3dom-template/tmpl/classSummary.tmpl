@@ -56,59 +56,6 @@ var title = obj.title;
 
     <?js } ?>
 
-    <!--div class="overviewContainer">
-        <?js
-            var members = self.find({kind: 'member',  memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
-            var fields = [];
-            if (members && members.length && members.forEach)
-            {
-                members.forEach(function(m)
-                {
-                    if(m.field)
-                        fields.push(m);
-                });
-            }
-            if( fields.length )
-            {
-        ?>
-            <h3><a href="#Fields">Fields:</a></h3>
-            <ul>
-                <?js
-                    fields.forEach(function(f)
-                    {
-                ?>
-                    <li>
-                        <a href="#<?js= f.name ?>"><?js= f.name ?> </a>
-                    </li>
-                <?js
-                    });
-                ?>
-            </ul>
-        <?js } ?>
-    </div-->
-
-    <!--div class="overviewContainer">
-            <?js
-            var members = self.find({kind: 'member',  memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
-            if (members && members.length && members.forEach) {
-        ?>
-        <h3><a href="#Properties">Properties:</a></h3>
-        <ul>
-        <?js members.forEach(function(p) {
-            if(p.field == undefined)
-            {
-        ?>
-            <li>
-                <a href="#<?js= p.name ?>"><?js= p.name ?> </a>
-            </li>
-        <?js
-            }
-        });
-        ?>
-        </ul>
-        <?js } ?>
-    </div-->
-
     <div class="overviewContainer">
 
         <h2>Quick Links</h2>

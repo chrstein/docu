@@ -128,6 +128,10 @@ function generate(title, docs, filename, resolveLinks) {
     {
         html = view.render('classesPage.tmpl', docData);
     }
+    else if (title == "Namespaces")
+    {
+        html = view.render('namespacesPage.tmpl', docData);
+    }
     else
     {
         html = view.render('container.tmpl', docData);
