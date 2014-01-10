@@ -2,7 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>X3DOM Full API Documentation: <?js= title ?></title>
+
+    <?js  if (env.opts.query.scope == 'full'){ ?>
+
+        <title>X3DOM Full API Documentation: <?js= title ?></title>
+
+    <?js } else if (env.opts.query.scope == 'nodes') { ?>
+
+        <title>X3DOM Node API Documentation: <?js= title ?></title>
+
+    <?js } ?>
     
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
