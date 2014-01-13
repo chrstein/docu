@@ -20,6 +20,28 @@ a
     color: #444;
 }
 
+/* class for a small thumbnail on the left side of an unordered list,
+   which contains all elements of the chapter and is formatted using "chapter-contents" */
+.chapter-illustration
+{
+    width:92px;
+    height:92px;
+    display:inline-block;
+    vertical-align:top;
+    margin-bottom:16px;
+    border-radius:10px;    
+    border:1px solid #aaaaaa;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: rgba(0, 0, 0, 0.15) 3px 3px 3px;
+    -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.15);
+}
+
+.chapter-contents
+{
+    display:inline-block;
+    margin-bottom:16px;
+}
+
 #mainContainerDiv
 {
     background-color: white;
