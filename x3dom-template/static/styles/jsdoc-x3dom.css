@@ -1,8 +1,3 @@
-a
-{
-    color: #444;
-}
-
 header
 {
     display: block;
@@ -195,7 +190,6 @@ header
 section
 {
     display: block;
-    padding: 6px 24px;
     border-bottom: 1px solid #ccc;
     margin-right: 420px;
 }
