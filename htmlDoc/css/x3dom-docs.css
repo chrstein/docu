@@ -42,6 +42,36 @@ a
     margin-bottom:16px;
 }
 
+.simpleButton
+{
+    border:1px solid #B9B9B9;
+    border-radius: 5px;
+    padding:6px;
+    background: -webkit-linear-gradient(#004BBC, #000B27);
+    background: -o-linear-gradient(#004BBC, #000B27);
+    background: -moz-linear-gradient(#004BBC, #000B27);
+    background: linear-gradient(#004BBC, #000B27);     
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: rgba(0, 0, 0, 0.15) 3px 3px 3px;
+    -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.15);    
+    
+    
+}
+
+.simpleButton a
+{
+    color: #EEEEEE;
+    text-decoration:none;
+}
+
+.simpleButton:hover
+{
+    background: -webkit-linear-gradient(#004BBC, #000B27);
+    background: -o-linear-gradient(#004BBC, #000B27);
+    background: -moz-linear-gradient(#004BBC, #000B27);
+    background: linear-gradient(#115BBD, #111E38);
+}
+
 #mainContainerDiv
 {
     background-color: white;
