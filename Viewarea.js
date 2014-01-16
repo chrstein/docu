@@ -29,7 +29,7 @@ x3dom.Viewarea = function (document, scene) {
 
     /**
      * rotation matrix
-     * @var {x3dom.fields.SFMAtrix4f} _rotMat
+     * @var {x3dom.fields.SFMatrix4f} _rotMat
      * @memberof x3dom.Viewarea
      * @instance
      * @protected
@@ -38,7 +38,7 @@ x3dom.Viewarea = function (document, scene) {
 
     /**
      * translation matrix
-     * @var {x3dom.fields.SFMAtrix4f} _transMat
+     * @var {x3dom.fields.SFMatrix4f} _transMat
      * @memberof x3dom.Viewarea
      * @instance
      * @protected
