@@ -12,22 +12,25 @@
         <title>X3DOM Node API Documentation: <?js= title ?></title>
 
     <?js } ?>
-    
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
+
+    <?js
+        var depth = filename.split("/").length;
+
+        var backPath = "";
+        for( var i = 0; i < depth -2; ++i)
+            backPath+="../"
+    ?>
+
+    <script src="<?js= backPath ?>../static/scripts/prettify/prettify.js"> </script>
+    <script src="<?js= backPath ?>../static/scripts/prettify/lang-css.js"> </script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <?js
-        var depth = filename.split("/").length;
-        var backPath = "";
-        for( var i = 0; i < depth -1; ++i)
-            backPath+="../"
-    ?>
-    <link type="text/css" rel="stylesheet" href="<?js= backPath ?>static/styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="<?js= backPath ?>static/styles/jsdoc-x3dom.css">
-    <link type="text/css" rel="stylesheet" href="<?js= backPath ?>static/styles/x3dom-docs.css">
+
+    <link type="text/css" rel="stylesheet" href="<?js= backPath ?>../static/styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="<?js= backPath ?>../static/styles/jsdoc-x3dom.css">
+    <link type="text/css" rel="stylesheet" href="<?js= backPath ?>../static/styles/x3dom-docs.css">
 </head>
 
 <body>
@@ -54,23 +57,23 @@
 <div id="docu-navbar">
 
     <a href="<?js= backPath ?>index.html">
-        <div class="docu-navitem <?js= (title === 'Overview')? docu-navitem-active : '' ?>">Overview</div>
+        <div class="docu-navitem <?js= (title == 'Overview'? 'docu-navitem-active' : '') ?>">Overview</div>
     </a>
 
     <?js if( this.api == "node"){ ?>
 
     <a href="<?js= backPath ?>Components.html">
-        <div class="docu-navitem <?js= (title === 'Components')? docu-navitem-active : '' ?>">Components</div>
+        <div class="docu-navitem <?js= (title == 'Components'? 'docu-navitem-active' : '') ?>">Components</div>
     </a>
 
     <?js }else{ ?>
 
     <a href="<?js= backPath ?>Classes.html">
-        <div class="docu-navitem <?js= (title === 'Classes')? docu-navitem-active : '' ?>">Classes</div>
+        <div class="docu-navitem <?js= (title == 'Classes' ? 'docu-navitem-active' : '') ?>">Classes</div>
     </a>
 
     <a href="<?js= backPath ?>Namespaces.html">
-        <div class="docu-navitem <?js= (title === 'Namespaces')? docu-navitem-active : '' ?>">Namespaces</div>
+        <div class="docu-navitem <?js= (title == 'Namespaces'? 'docu-navitem-active' : '') ?>">Namespaces</div>
     </a>
     <?js } ?>
 </div>

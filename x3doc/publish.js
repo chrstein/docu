@@ -135,7 +135,7 @@ exports.publish = function(taffyData, opts, tutorials) {
             if (myClasses.length)
             {
                 view.api = "full";
-                generateClass('Class: ' + myClasses[0].name, myClasses, createFullApiPathWithFolders(outdir, "full."+helper.longnameToUrl[longname], false, true));
+                generateClass('Class: ' + myClasses[0].name, myClasses, createFullApiPathWithFolders("full."+helper.longnameToUrl[longname], false, true));
             }
 
             //generate X3D Nodes
@@ -144,7 +144,7 @@ exports.publish = function(taffyData, opts, tutorials) {
             {
                 //console.log(x3dNodes[0].name+ " " +x3dNodes[0].x3d + " " + x3dNodes[0].component);
                 view.api = "node";
-                generateX3DNode('Node: ' + x3dNodes[0].name, x3dNodes, createNodeApiPathWithFolders(outdir, x3dNodes[0], "node."+helper.longnameToUrl[longname]));
+                generateX3DNode('Node: ' + x3dNodes[0].name, x3dNodes, createNodeApiPathWithFolders( x3dNodes[0],"node."+helper.longnameToUrl[longname]));
             }
 
             //generate namespace overviews
@@ -152,19 +152,18 @@ exports.publish = function(taffyData, opts, tutorials) {
             if (namespaces.length)
             {
                 view.api = "full";
-                generateNameSpaceIndex('Namespace: ' + namespaces[0].name, namespaces, createFullApiPathWithFolders(outdir, "full."+helper.longnameToUrl[longname],true,true));
+                generateNameSpaceIndex('Namespace: ' + namespaces[0].name, namespaces, createFullApiPathWithFolders("full."+helper.longnameToUrl[longname],true,true));
             }
         }
     }
 
-    //generateClassIndex('Class: ' + myClasses[0].name, myClasses, createFullApiPathWithFolders(outdir, "full."+helper.longnameToUrl[longname], false, true));
-
+    generateClassesIndex(typeLists.classes);
 
 };
 
 //----------------------------------------------------------------------------------------------------------------------
 
-function createNodeApiPathWithFolders(outdir,doc,url)
+function createNodeApiPathWithFolders(doc,url)
 {
     var desc = disassemble(url,true,/\./g);
 
@@ -174,10 +173,10 @@ function createNodeApiPathWithFolders(outdir,doc,url)
 
 //----------------------------------------------------------------------------------------------------------------------
 
-function createFullApiPathWithFolders(outdir, url, isNamespace, hasEnding)
+function createFullApiPathWithFolders(url, isNamespace, hasEnding)
 {
-    hasEnding = (hasEnding !== undefined) ? hasEnding : true;
-    isNamespace = (isNamespace !== undefined) ? isNamespace : false;
+    hasEnding = (typeof hasEnding != 'undefined') ? hasEnding : true;
+    isNamespace = (typeof isNamespace != 'undefined') ? isNamespace : false;
     var desc = disassemble(url, hasEnding, /\./g);
 
     var path = desc.path.toString().replace(/,/g,"/");
@@ -306,16 +305,6 @@ function createFolderStructure(outdir, namespaces, components)
 
 function copyStaticFiles (templatePath)
 {
-    // copy static files to outdir
-    var fromDir = path.join(templatePath, 'static'),
-        staticFiles = fs.ls(fromDir, 3);
-
-    staticFiles.forEach(function(fileName) {
-        var toDir = fs.toDir( fileName.replace(fromDir, outdir+"/static/") );
-        fs.mkPath(toDir);
-        fs.copyFileSync(fileName, toDir);
-    });
-
     // copy static files to outdir
     var fromDir = path.join(templatePath, 'base'),
         baseFiles = fs.ls(fromDir, 50);
@@ -540,15 +529,32 @@ function generateNameSpaceIndex(title, docs, filename, resolveLinks)
 
 function generateClassesIndex(classes)
 {
+    //console.log(classes);
+
     var docData = {
         title: "Classes",
+        filename: "full/Classes.html",
+        classes: []
+    }
 
-        filename: "full/Classes.html"
-    };
+    for(var c in classes)
+    {
+        docData.classes.push({
+            name: classes[c].name,
+            url: createFullApiPathWithFolders(classes[c].longname,false,false)+"html"
+        });
+    }
 
-    var outpath = path.join(outdir , filename),
-        html = view.render('namespaceContainer.tmpl', docData);
+    docData.classes.sort(function(a,b)
+    {
+        return (b.name < a.name);
+    });
+
+    var outpath = path.join(outdir , "full\\Classes.html"),
+        html =  view.render('classesContent.tmpl', docData);
+
     fs.writeFileSync(outpath, html, 'utf8');
+
 }
 
 //----------------------------------------------------------------------------------------------------------------------
