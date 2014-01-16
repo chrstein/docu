@@ -152,12 +152,13 @@ exports.publish = function(taffyData, opts, tutorials) {
             if (namespaces.length)
             {
                 view.api = "full";
-                generateNameSpaceIndex('Namespace: ' + namespaces[0].name, namespaces, createFullApiPathWithFolders("full."+helper.longnameToUrl[longname],true,true));
+                generateNameSpace('Namespace: ' + namespaces[0].name, namespaces, createFullApiPathWithFolders("full."+helper.longnameToUrl[longname],true,true));
             }
         }
     }
 
-    generateClassesIndex(typeLists.classes);
+    generateIndex("Classes",typeLists.classes,false);
+    generateIndex("Namespaces",typeLists.namespaces,true);
 
 };
 
@@ -181,7 +182,7 @@ function createFullApiPathWithFolders(url, isNamespace, hasEnding)
 
     var path = desc.path.toString().replace(/,/g,"/");
     var val = isNamespace ?
-        path+"/"+desc.name+"/index." + desc.ending :
+        path+"/"+desc.name+"/index.html":
         path+"/"+desc.name+ "." + desc.ending;
 
     //console.log(url + " "+val);
@@ -510,7 +511,7 @@ function generateX3DNode(title, docs, filename, resolveLinks)
 
 //----------------------------------------------------------------------------------------------------------------------
 
-function generateNameSpaceIndex(title, docs, filename, resolveLinks)
+function generateNameSpace(title, docs, filename, resolveLinks)
 {
     resolveLinks = resolveLinks === false ? false : true;
 
@@ -527,21 +528,21 @@ function generateNameSpaceIndex(title, docs, filename, resolveLinks)
 
 //----------------------------------------------------------------------------------------------------------------------
 
-function generateClassesIndex(classes)
+function generateIndex(title, objects, isNameSpace)
 {
     //console.log(classes);
 
     var docData = {
-        title: "Classes",
-        filename: "full/Classes.html",
+        title: title,
+        filename: "full/"+title+".html",
         classes: []
     }
 
-    for(var c in classes)
+    for(var o in objects)
     {
         docData.classes.push({
-            name: classes[c].name,
-            url: createFullApiPathWithFolders(classes[c].longname,false,false)+"html"
+            name: objects[o].name,
+            url: createFullApiPathWithFolders(objects[o].longname,isNameSpace,false)
         });
     }
 
@@ -550,7 +551,7 @@ function generateClassesIndex(classes)
         return (b.name < a.name);
     });
 
-    var outpath = path.join(outdir , "full\\Classes.html"),
+    var outpath = path.join(outdir , "full\\"+title+".html"),
         html =  view.render('classesContent.tmpl', docData);
 
     fs.writeFileSync(outpath, html, 'utf8');
