@@ -120,7 +120,7 @@ x3dom.registerNodeType(
         this._parentNodes = [];
 
         /**
-		 * @var {x3dom.nodeType.X3DMetadataObject} metadata
+		 * @var {x3dom.nodeTypes.X3DMetadataObject} metadata
 		 * @memberof x3dom.nodeTypes.X3DNode
          * @field x3d
          * @instance
@@ -402,7 +402,10 @@ x3dom.registerNodeType(
         /**
 		 * Constructor for X3DMetadataObject passing a context object
 		 * @constructs x3dom.nodeTypes.X3DMetadataObject
-		 * @extends x3dom.nodeTypes.X3DNode
+         * @x3d 3.2
+         * @component Core
+         * @status full
+         * @extends x3dom.nodeTypes.X3DNode
 		 * @param {Object} ctx - context object containing initial settings
 		 */
 		function (ctx) {
@@ -473,7 +476,10 @@ x3dom.registerNodeType(
 		/**
 		 * Constructor for MetadataFloat passing a context object
 		 * @constructs x3dom.nodeTypes.MetadataFloat
-		 * @extends x3dom.nodeTypes.X3DMetadataObject
+         * @x3d 3.2
+         * @component Core
+         * @status full
+         * @extends x3dom.nodeTypes.X3DMetadataObject
 		 * @param {Object} ctx - context object containing initial settings
 		 */
         function (ctx) {
@@ -496,13 +502,17 @@ x3dom.registerNodeType(
     "Field",
     "Core",
 	
-	/**
-	 * Constructor for Field node passing a context object
-	 * @constructs x3dom.nodeTypes.Field
-	 * @extends x3dom.nodeTypes.X3DNode
-	 * @param {Object} ctx - context object containing initial settings
-	 */
-    defineClass(x3dom.nodeTypes.X3DNode,
+	defineClass(x3dom.nodeTypes.X3DNode,
+        /**
+         * Constructor for Field node passing a context object
+         * @constructs x3dom.nodeTypes.Field
+         * @x3d 3.2
+         * @component Core
+         * @status full
+         * @extends x3dom.nodeTypes.X3DNode
+         * @param {Object} ctx - context object containing initial settings
+         */
+
         function (ctx) {
             x3dom.nodeTypes.Field.superClass.call(this, ctx);
 
@@ -556,6 +566,9 @@ x3dom.registerNodeType(
     /**
      * Constructor for X3DChildNode
      * @constructs x3dom.nodeTypes.X3DChildNode
+     * @x3d 3.2
+     * @component Core
+     * @status full
      * @extends x3dom.nodeTypes.X3DNode
      * @param {Object} ctx - context object containing initial settings
      */
@@ -576,6 +589,9 @@ x3dom.registerNodeType(
     /**
      * Constructor for X3DBoundedNode
      * @constructs x3dom.nodeTypes.X3DBoundedNode
+     * @x3d 3.2
+     * @component Core
+     * @status full
      * @extends x3dom.nodeTypes.X3DNode
      * @param {Object} ctx - context object containing initial settings
      */
