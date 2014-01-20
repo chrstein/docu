@@ -144,7 +144,12 @@ exports.publish = function(taffyData, opts, tutorials) {
             var x3dNodes = helper.find(taffy(typeLists.x3dNodes), {longname: longname});
             if (x3dNodes.length)
             {
-                //if(componentMap)
+                if(typeof componentMap[x3dNodes[0].component] === 'undefined')
+                {
+                    componentMap[x3dNodes[0].component]= [];
+                }
+
+                componentMap[x3dNodes[0].component].push(x3dNodes[0]);
 
                 //console.log(x3dNodes[0].name+ " " +x3dNodes[0].x3d + " " + x3dNodes[0].component);
                 view.api = "node";
@@ -167,8 +172,8 @@ exports.publish = function(taffyData, opts, tutorials) {
     generateIndex("Classes", typeLists.classes, false, "full/classes.html");
     generateIndex("Namespaces", typeLists.namespaces, true, "full/namespaces.html");
 
-    //view.api = "node";
-    //generateIndex("Components", typeLists.namespaces, true, "node/components.html");
+    view.api = "node";
+    //generateIndex("Components", componentMap, false, "node/components.html");
 };
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -550,13 +555,14 @@ function generateIndex(title, objects, isNameSpace, filename)
         var docData = {
         title: title,
         filename: filename,
+        letterHeadline : !isNameSpace,
         indexed: []
     }
 
     for(var o in objects)
     {
         docData.indexed.push({
-            name: objects[o].name,
+            name: isNameSpace ? objects[o].longname : objects[o].name,
             url: createFullApiPathWithFolders(objects[o].longname,isNameSpace,false)
         });
         //console.log(docData.indexed[docData.indexed.length-1].name +" "+docData.indexed[docData.indexed.length-1].url );
@@ -565,7 +571,7 @@ function generateIndex(title, objects, isNameSpace, filename)
 
     docData.indexed.sort(function(a,b)
     {
-        return (b.name < a.name);
+        return (a.name == b.name ? 0 : ((a.name < b.name) ? -1 : 1));
     });
 
     var outpath = path.join(outdir , filename),
