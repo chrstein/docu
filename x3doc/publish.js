@@ -127,6 +127,8 @@ exports.publish = function(taffyData, opts, tutorials) {
     view.typeLists = typeLists;
     view.disassemble = disassemble;
 
+    var componentMap = {};
+
     for (var longname in helper.longnameToUrl) {
         if ( hasOwnProp.call(helper.longnameToUrl, longname) ) {
 
@@ -142,6 +144,8 @@ exports.publish = function(taffyData, opts, tutorials) {
             var x3dNodes = helper.find(taffy(typeLists.x3dNodes), {longname: longname});
             if (x3dNodes.length)
             {
+                //if(componentMap)
+
                 //console.log(x3dNodes[0].name+ " " +x3dNodes[0].x3d + " " + x3dNodes[0].component);
                 view.api = "node";
                 generateX3DNode('Node: ' + x3dNodes[0].name, x3dNodes, createNodeApiPathWithFolders( x3dNodes[0],"node."+helper.longnameToUrl[longname]));
@@ -151,15 +155,20 @@ exports.publish = function(taffyData, opts, tutorials) {
             var namespaces = helper.find(taffy(typeLists.namespaces), {longname: longname});
             if (namespaces.length)
             {
+                var classes = helper.find(taffy(typeLists.classes), { memberof: longname});
+                console.log(longname+ " " +classes.length );
+
                 view.api = "full";
-                generateNameSpace('Namespace: ' + namespaces[0].name, namespaces, createFullApiPathWithFolders("full."+helper.longnameToUrl[longname],true,true));
+                generateNameSpace('Namespace: ' + namespaces[0].name, namespaces, classes, createFullApiPathWithFolders("full."+helper.longnameToUrl[longname],true,true));
             }
         }
     }
 
-    generateIndex("Classes",typeLists.classes,false);
-    generateIndex("Namespaces",typeLists.namespaces,true);
+    generateIndex("Classes", typeLists.classes, false, "full/classes.html");
+    generateIndex("Namespaces", typeLists.namespaces, true, "full/namespaces.html");
 
+    view.api = "node";
+    generateIndex("Components", typeLists.namespaces, true, "node/components.html");
 };
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -182,10 +191,9 @@ function createFullApiPathWithFolders(url, isNamespace, hasEnding)
 
     var path = desc.path.toString().replace(/,/g,"/");
     var val = isNamespace ?
-        path+"/"+desc.name+"/index.html":
-        path+"/"+desc.name+ "." + desc.ending;
+        path+ (path.length > 0 ? "/" : "" ) + desc.name+"/index.html":
+        path+"/"+desc.name+ "." + ( hasEnding ? desc.ending: "html");
 
-    //console.log(url + " "+val);
     return val;
 }
 
@@ -511,15 +519,24 @@ function generateX3DNode(title, docs, filename, resolveLinks)
 
 //----------------------------------------------------------------------------------------------------------------------
 
-function generateNameSpace(title, docs, filename, resolveLinks)
+function generateNameSpace(title, docs, classes, filename, resolveLinks)
 {
     resolveLinks = resolveLinks === false ? false : true;
 
     var docData = {
         title: title,
         docs: docs,
-        filename: filename
+        filename: filename,
+        classes : []
     };
+
+    for(var c in classes)
+    {
+        docData.classes.push({
+            name: classes[c].name,
+            url: classes[c].longname
+        });
+    }
 
     var outpath = path.join(outdir , filename),
         html = view.render('namespaceContainer.tmpl', docData);
@@ -528,31 +545,31 @@ function generateNameSpace(title, docs, filename, resolveLinks)
 
 //----------------------------------------------------------------------------------------------------------------------
 
-function generateIndex(title, objects, isNameSpace)
+function generateIndex(title, objects, isNameSpace, filename)
 {
-    //console.log(classes);
-
-    var docData = {
+        var docData = {
         title: title,
-        filename: "full/"+title+".html",
-        classes: []
+        filename: filename,
+        indexed: []
     }
 
     for(var o in objects)
     {
-        docData.classes.push({
+        docData.indexed.push({
             name: objects[o].name,
             url: createFullApiPathWithFolders(objects[o].longname,isNameSpace,false)
         });
+        //console.log(docData.indexed[docData.indexed.length-1].name +" "+docData.indexed[docData.indexed.length-1].url );
     }
 
-    docData.classes.sort(function(a,b)
+
+    docData.indexed.sort(function(a,b)
     {
         return (b.name < a.name);
     });
 
-    var outpath = path.join(outdir , "full\\"+title+".html"),
-        html =  view.render('classesContent.tmpl', docData);
+    var outpath = path.join(outdir , filename),
+        html =  view.render('indexedContent.tmpl', docData);
 
     fs.writeFileSync(outpath, html, 'utf8');
 
@@ -578,7 +595,7 @@ function disassemble(longname, hasEnding, del, isNamespace)
 }
 //----------------------------------------------------------------------------------------------------------------------
 
-function linkFromTo(longnameFrom,fromNamespace, longnameTo, toNameSpace, linktext, cssClass)
+function linkFromTo(longnameFrom, fromNamespace, longnameTo, toNameSpace, linktext, cssClass)
 {
     var from = disassemble(longnameFrom, false, /\./g, fromNamespace );
     var to = disassemble(longnameTo, false, /\./g, toNameSpace );
@@ -635,7 +652,9 @@ function linkFromContextTo( longnameTo, toNameSpace, linktext, cssClass)
 {
     var link = "";
     if(view.api == "full")
+    {
         link = linkFromTo(view.context.longname, view.context.kind == 'namespace', longnameTo, toNameSpace, linktext, cssClass);
+    }
     else
     {
         for(var i = 0, n = view.typeLists.x3dNodes.length; i < n; ++i )

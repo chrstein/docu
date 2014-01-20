@@ -2,18 +2,18 @@
     self = this;
 ?>
 <section>
-    <h3 class="subsection-title">Class Index</h3>
+    <h3 class="subsection-title"><?js= title ?> Index</h3>
     <div class="overviewContainer">
 
     <ul>
         <?js
-            for(var c in classes)
+            for(var i in indexed)
             {
-                var class = classes[c];
+                var entry = indexed[i];
         ?>
         <li>
-            <a href="<?js= class.url  ?>">
-                <?js= class.name ?>
+            <a href="<?js= entry.url  ?>">
+                <?js= entry.name ?>
             </a>
         </li>
         <?js } ?>

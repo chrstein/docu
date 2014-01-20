@@ -1,6 +1,7 @@
 <?js
     var self = this;
     docs.forEach(function(doc, i) {
+    self.context = doc;
 ?>
 
 <section>
@@ -17,6 +18,21 @@
 
         </h2>
     </header>
+    <div>
+        <ul>
+            <?js
+                for(var c in classes)
+                {
+                    var val = classes[c];
+            ?>
+            <li>
+                <?js= self.linkFromContextTo(val.url, false, val.name) ?>
+            </li>
+            <?js
+                }
+            ?>
+        </ul>
+    </div>
 </section>
 
 <?js });?>
