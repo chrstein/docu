@@ -380,3 +380,55 @@ h6
 .disabled {
     color: #454545;
 }
+
+.container-overview ul
+{
+    list-style-type: none;
+}
+
+.container-overview ul li
+{
+    list-style-position: inside;
+}
+
+.container-overview ul li a:link, .container-overview ul li a:hover, .container-overview ul li a:visited
+{
+    font-weight:bold;
+    color:#555;
+    text-decoration:none;
+}
+
+
+.container-overview ul li a:hover {
+    background-color:#ccc;
+}
+
+.inheritance-lvl-0
+{
+    margin-left: 0em;
+}
+
+.inheritance-lvl-1
+{
+    margin-left: 1em;
+}
+
+.inheritance-lvl-2
+{
+    margin-left: 2em;
+}
+
+.inheritance-lvl-3
+{
+    margin-left: 3em;
+}
+
+.inheritance-lvl-4
+{
+    margin-left: 4em;
+}
+
+.inheritance-lvl-5
+{
+    margin-left: 5em;
+}
