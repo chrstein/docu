@@ -129,6 +129,24 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     var componentMap = {};
 
+    //inheritance hierarchy
+    //generate X3D Nodes
+    var x3dNodes = helper.find(taffy(typeLists.x3dNodes));
+    for(var n in x3dNodes)
+    {
+        var node = x3dNodes[n];
+
+        if(node.augments)
+        {
+            var parent = helper.find(taffy(typeLists.x3dNodes) , {longname:node.augments} )[0];
+            if(!parent.childNodes)
+                parent.childNodes = [];
+
+            parent.childNodes.push(node);
+            node.parentNode = parent;
+        }
+    }
+
     for (var longname in helper.longnameToUrl) {
         if ( hasOwnProp.call(helper.longnameToUrl, longname) ) {
 
@@ -561,7 +579,7 @@ function generateComponents(componentMap)
             componentMap[c][m].url = componentMap[c][m].name + ".html";
         }
 
-        generateIndex(c, componentMap[c], false, "node/"+c+"/index.html", false);
+        generateIndex("Component" + c, componentMap[c], false, "node/"+c+"/index.html", false);
     }
 
     generateIndex("Components",components, false, "node/components.html");

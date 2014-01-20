@@ -88,14 +88,60 @@
 
         <div class="container-overview">
 
-            <?js if (doc.augments && doc.augments.length) { ?>
-            <br>
-            <h3 class="subsection-title">Inherits<a href="#">&#10548;</a></h3>
+            <h3 class="subsection-title">Inheritance<a href="#">&#10548;</a></h3>
+            <ul>
+            <?js
+                var parent = doc.parentNode;
+                var level = 0;
+                var list = [];
 
-            <ul><?js doc.augments.forEach(function(a) { ?>
-                <li><?js= self.linkFromContextTo( a, false, a) ?></li>
-                <?js }); ?></ul>
+                while(parent)
+                {
+                    list.unshift(parent);
+                    parent = parent.parentNode;
+                }
+
+                for(var i = 0, n = list.length; i < n; ++i)
+                {
+                    parent = list[i];
+            ?>
+                <li class="inheritance-lvl-<?js= level ?>">
+                    <?js= self.linkFromContextTo( parent.longname, false, parent.name) ?><?js= "("+parent.childNodes.length+")" ?>
+                </li>
+            <?js
+                    level++;
+                }
+            ?>
+
+            <li class="inheritance-lvl-<?js= level ?>">
+                <?js=  doc.name ?>
+                <?js
+                    if(doc.childNodes && doc.childNodes.length)
+                    {
+                ?>
+                <?js= "("+doc.childNodes.length+")" ?>
+                <?js
+                    }
+                ?>
+            </li>
+
+            <?js if (doc.childNodes && doc.childNodes.length > 0) { ?>
+                <?js
+
+                level++;
+
+                for(var i = 0, n = doc.childNodes.length; i < n; ++i)
+                {
+                    var child = doc.childNodes[i];
+            ?>
+                <li class="inheritance-lvl-<?js= level ?>">
+                    <?js= self.linkFromContextTo( child.longname, false, child.name) ?>
+                </li>
+                <?js
+                }
+            ?>
             <?js } ?>
+            </ul>
 
             <?js if (self.api == "full" && doc.kind === 'class') { ?>
             <br>
