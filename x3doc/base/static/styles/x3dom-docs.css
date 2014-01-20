@@ -141,6 +141,14 @@ a
     vertical-align:middle;
 }
 
+.prettyprint
+{
+    border-radius: 5px;
+    border: 1px solid #aaaaaa;
+    margin: 16px 0;
+    padding: 16px;
+}
+
 #mainContainerDiv
 {
     background-color: white;
