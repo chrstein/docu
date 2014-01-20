@@ -82,6 +82,65 @@ a
     margin-bottom:8px;
 }
 
+.docuFigureContainer
+{
+    display:inline-block;
+    text-align:center;
+    margin:16px;
+}
+
+.docuFigure
+{
+    display:inline-block;
+    border:1px solid #aaaaaa;
+    padding:0;
+    margin:0;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: rgba(0, 0, 0, 0.15) 3px 3px 3px;
+    -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.15);
+}
+
+.docuCaption
+{
+    margin-top: 12px;
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-color: #aaaaaa;
+    color:#444;
+    font-weight:bold;
+    text-align:center;
+}
+
+.docuUsedNodeList
+{
+    display:inline-block;
+    
+    background: -webkit-linear-gradient(#eeeeee, #dddddd);
+    background: -o-linear-gradient(#eeeeee, #dddddd);
+    background: -moz-linear-gradient(#eeeeee, #dddddd);
+    background: linear-gradient(#eeeeee, #dddddd);
+
+    border-radius: 5px;
+    border: 1px solid #aaaaaa;
+    margin: 16px 0;
+    padding: 16px;
+
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: rgba(0, 0, 0, 0.15) 5px 5px 5px;
+    -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+}
+
+.docuUsedNodeList h3
+{
+    margin-top:0;
+    color:#444;    
+}
+
+.docuUsedNodeList img
+{
+    vertical-align:middle;
+}
+
 #mainContainerDiv
 {
     background-color: white;
