@@ -7,10 +7,18 @@
 
     <ul>
         <?js
+            var currentChar = '@';
+
             for(var i in indexed)
             {
                 var entry = indexed[i];
+
+                if (letterHeadline && entry.name[0].toUpperCase() > currentChar)
+                {
+                    currentChar = entry.name[0].toUpperCase();
         ?>
+            <h4><?js= currentChar ?></h4>
+        <?js } ?>
         <li>
             <a href="<?js= entry.url  ?>">
                 <?js= entry.name ?>
