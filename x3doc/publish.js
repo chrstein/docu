@@ -148,12 +148,11 @@ exports.publish = function(taffyData, opts, tutorials) {
                 {
                     componentMap[x3dNodes[0].component]= [];
                 }
-
                 componentMap[x3dNodes[0].component].push(x3dNodes[0]);
 
                 //console.log(x3dNodes[0].name+ " " +x3dNodes[0].x3d + " " + x3dNodes[0].component);
                 view.api = "node";
-                generateX3DNode('Node: ' + x3dNodes[0].name, x3dNodes, createNodeApiPathWithFolders( x3dNodes[0],"node."+helper.longnameToUrl[longname]));
+                generateX3DNode('Node: ' + x3dNodes[0].name, x3dNodes, createNodeApiPathWithFolders( x3dNodes[0],helper.longnameToUrl[longname]));
             }
 
             //generate namespace overviews
@@ -161,7 +160,6 @@ exports.publish = function(taffyData, opts, tutorials) {
             if (namespaces.length)
             {
                 var classes = helper.find(taffy(typeLists.classes), { memberof: longname});
-                console.log(longname+ " " +classes.length );
 
                 view.api = "full";
                 generateNameSpace('Namespace: ' + namespaces[0].name, namespaces, classes, createFullApiPathWithFolders("full."+helper.longnameToUrl[longname],true,true));
@@ -169,11 +167,11 @@ exports.publish = function(taffyData, opts, tutorials) {
         }
     }
 
-    generateIndex("Classes", typeLists.classes, false, "full/classes.html");
-    generateIndex("Namespaces", typeLists.namespaces, true, "full/namespaces.html");
+    generateIndex("Classes", typeLists.classes, false, "full/classes.html",true);
+    generateIndex("Namespaces", typeLists.namespaces, true, "full/namespaces.html",true);
 
     view.api = "node";
-    //generateIndex("Components", componentMap, false, "node/components.html");
+    generateComponents(componentMap);
 };
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -182,7 +180,7 @@ function createNodeApiPathWithFolders(doc,url)
 {
     var desc = disassemble(url,true,/\./g);
 
-    return desc.path[0]+"/"+doc.component+"/"+desc.name+ "." + desc.ending;
+    return /*desc.path[0]+"/"+*/"node/"+doc.component+"/"+desc.name+ "." + desc.ending;
 }
 
 
@@ -490,10 +488,8 @@ function getLists()
 
 //----------------------------------------------------------------------------------------------------------------------
 
-function generateClass(title, docs, filename, resolveLinks)
+function generateClass(title, docs, filename)
 {
-    resolveLinks = resolveLinks === false ? false : true;
-
     var  docData = {
         title: title,
         docs: docs,
@@ -507,16 +503,15 @@ function generateClass(title, docs, filename, resolveLinks)
 
 //----------------------------------------------------------------------------------------------------------------------
 
-function generateX3DNode(title, docs, filename, resolveLinks)
+function generateX3DNode(title, docs, filename)
 {
-    resolveLinks = resolveLinks === false ? false : true;
-
     var  docData = {
         title: title,
         docs: docs,
-        filename: filename
+        filename: "node"+filename
     };
 
+    console.log(filename);
     var outpath = path.join(outdir , filename),
         html = view.render('classContainer.tmpl', docData);
     fs.writeFileSync(outpath, html, 'utf8');
@@ -524,10 +519,8 @@ function generateX3DNode(title, docs, filename, resolveLinks)
 
 //----------------------------------------------------------------------------------------------------------------------
 
-function generateNameSpace(title, docs, classes, filename, resolveLinks)
+function generateNameSpace(title, docs, classes, filename)
 {
-    resolveLinks = resolveLinks === false ? false : true;
-
     var docData = {
         title: title,
         docs: docs,
@@ -550,9 +543,38 @@ function generateNameSpace(title, docs, classes, filename, resolveLinks)
 
 //----------------------------------------------------------------------------------------------------------------------
 
-function generateIndex(title, objects, isNameSpace, filename)
+function generateComponents(componentMap)
 {
-        var docData = {
+    //generate
+    var components = [];
+
+    for(var c in componentMap)
+    {
+        components.push({
+            name: c,
+            url: c+"/index.html"
+        });
+
+        for(var m in componentMap[c])
+        {
+            componentMap[c][m].url = componentMap[c][m].name + ".html";
+        }
+
+        generateIndex(c, componentMap[c], false, "node/"+c+"/index.html", false);
+    }
+
+    generateIndex("Components",components, false, "node/components.html");
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+function generateIndex(title, objects, isNameSpace, filename, generateUrls)
+{
+    generateUrls = generateUrls === true ? true: false;
+
+    var docData =
+    {
         title: title,
         filename: filename,
         letterHeadline : !isNameSpace,
@@ -563,10 +585,15 @@ function generateIndex(title, objects, isNameSpace, filename)
     {
         docData.indexed.push({
             name: isNameSpace ? objects[o].longname : objects[o].name,
-            url: createFullApiPathWithFolders(objects[o].longname,isNameSpace,false)
+            url: generateUrls ?
+                (view.api == "full" ?
+                    createFullApiPathWithFolders(objects[o].longname,isNameSpace,false) :
+                    createNodeApiPathWithFolders(objects[o], helper.longnameToUrl[objects[o].longname])) :
+                objects[o].url
         });
-        //console.log(docData.indexed[docData.indexed.length-1].name +" "+docData.indexed[docData.indexed.length-1].url );
     }
+    console.log(view.api);
+    console.log(docData.indexed);
 
 
     docData.indexed.sort(function(a,b)

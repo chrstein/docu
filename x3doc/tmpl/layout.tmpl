@@ -3,21 +3,22 @@
 <head>
     <meta charset="utf-8">
 
-    <?js  if (env.opts.query.scope == 'full'){ ?>
+    <?js  if ( this.api == 'full'){ ?>
 
         <title>X3DOM Full API Documentation: <?js= title ?></title>
 
-    <?js } else if (env.opts.query.scope == 'nodes') { ?>
+    <?js } else if (this.api == 'nodes') { ?>
 
         <title>X3DOM Node API Documentation: <?js= title ?></title>
 
     <?js } ?>
 
+    <?js= filename ?>
     <?js
         var depth = filename.split("/").length;
 
         var backPath = "";
-        for( var i = 0; i < depth -2; ++i)
+        for( var i = 0; i < depth -1; ++i)
             backPath+="../"
     ?>
 
@@ -28,9 +29,9 @@
     <![endif]-->
 
 
-    <link type="text/css" rel="stylesheet" href="<?js= backPath ?>../static/styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="<?js= backPath ?>../static/styles/jsdoc-x3dom.css">
-    <link type="text/css" rel="stylesheet" href="<?js= backPath ?>../static/styles/x3dom-docs.css">
+    <link type="text/css" rel="stylesheet" href="<?js= backPath ?>static/styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="<?js= backPath ?>static/styles/jsdoc-x3dom.css">
+    <link type="text/css" rel="stylesheet" href="<?js= backPath ?>static/styles/x3dom-docs.css">
 </head>
 
 <body>
@@ -56,23 +57,27 @@
 
 <div id="docu-navbar">
 
-    <a href="<?js= backPath ?>index.html">
+    <a href="<?js= backPath+ (this.api == 'node' ? '/node/' : '/full/' )  ?>index.html">
         <div class="docu-navitem <?js= (title == 'Overview'? 'docu-navitem-active' : '') ?>">Overview</div>
     </a>
 
     <?js if( this.api == "node"){ ?>
 
-    <a href="<?js= backPath ?>Components.html">
+    <a href="<?js= backPath ?>node/nodes.html">
+        <div class="docu-navitem <?js= (title == 'Nodes'? 'docu-navitem-active' : '') ?>">Nodes</div>
+    </a>
+
+    <a href="<?js= backPath ?>node/components.html">
         <div class="docu-navitem <?js= (title == 'Components'? 'docu-navitem-active' : '') ?>">Components</div>
     </a>
 
     <?js }else{ ?>
 
-    <a href="<?js= backPath ?>Classes.html">
+    <a href="<?js= backPath ?>full/classes.html">
         <div class="docu-navitem <?js= (title == 'Classes' ? 'docu-navitem-active' : '') ?>">Classes</div>
     </a>
 
-    <a href="<?js= backPath ?>Namespaces.html">
+    <a href="<?js= backPath ?>full/namespaces.html">
         <div class="docu-navitem <?js= (title == 'Namespaces'? 'docu-navitem-active' : '') ?>">Namespaces</div>
     </a>
     <?js } ?>
