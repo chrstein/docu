@@ -50,9 +50,9 @@
         <pre class="prettyprint"><code class="language-html">
     &lt;html&gt; 
         &lt;head&gt; 
-        &lt;title&gt;My first X3DOM page&lt;/title&gt; 			
-        &lt;script type='text/javascript' src='http://www.x3dom.org/download/x3dom.js'&gt; &lt;/script&gt; 
-        &lt;link rel='stylesheet' type='text/css' href='http://www.x3dom.org/download/x3dom.css'&gt;&lt;/link&gt; 
+            &lt;title&gt;My first X3DOM page&lt;/title&gt; 			
+            &lt;script type='text/javascript' src='http://www.x3dom.org/download/x3dom.js'&gt; &lt;/script&gt; 
+            &lt;link rel='stylesheet' type='text/css' href='http://www.x3dom.org/download/x3dom.css'&gt;&lt;/link&gt; 
         &lt;/head&gt; 
         &lt;body&gt; 
             &lt;h1&gt;Hello, X3DOM!&lt;/h1&gt; 
@@ -74,15 +74,15 @@
 		The whole 3D content of the X3DOM context is described as a <i>scene</i>, so we'll add a <code>scene</code> tag inside of the <code>x3d</code> tag. This is something that comes from the X3D standard, and it is not important in the context of this tutorial. A scene can contain many different <i>nodes</i>, like, for instance, lights, groups, viewpoints and objects. In this first example, we are simply defining a 3D object, which is done by using the <code>shape</code> node. Inside of the shape node, we will have to specify the geometry of the object, which we will do using a simple <code>box</code> node. You can now add the following code after the closing <code>p</code> tag, inside the body of your HTML page:
         </p>	
         
-		<div class="codeSnippet">
-			&lt;x3d width='600px' height='400px'&gt; <br>
-			&emsp;&emsp;  &lt;scene&gt; <br>
-			&emsp;&emsp;&emsp;&emsp;  &lt;shape&gt; <br>			
-			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &lt;box&gt;&lt;/box&gt; <br>
-			&emsp;&emsp;&emsp;&emsp; &lt;/shape&gt; <br>
-			&emsp;&emsp;  &lt;/scene&gt; <br>
-			&lt;/x3d&gt; <br>
-		</div>
+		<pre class="prettyprint"><code class="language-html">
+    &lt;x3d width='600px' height='400px'&gt; 
+        &lt;scene&gt; 
+        &lt;shape&gt; 			
+    &lt;box&gt;&lt;/box&gt; 
+    &lt;/shape&gt; 
+        &lt;/scene&gt; 
+    &lt;/x3d&gt; 
+		</code></pre>
 		
         <p>
 		If you now open the HTML page with your browser, the result should look like this:
@@ -105,14 +105,14 @@
 		of the <code>material</code> node - we will now set it to red by specifying RGB values, each between 0 and 1, as '1 0 0':
 		</p>
         
-		<div class="codeSnippet">			
-			&lt;shape&gt; <br>
-			&emsp;&emsp;  &lt;appearance&gt; <br>
-			&emsp;&emsp;&emsp;&emsp;  &lt;material diffuseColor='1 0 0'&gt;&lt;/material&gt; <br>
-			&emsp;&emsp;  &lt;/appearance&gt; <br>
-			&emsp;&emsp; &lt;box&gt;&lt;/box&gt; <br>
-			&lt;/shape&gt; <br>
-		</div>
+		<pre class="prettyprint"><code class="language-html">		
+    &lt;shape&gt; 
+        &lt;appearance&gt; 
+        &lt;material diffuseColor='1 0 0'&gt;&lt;/material&gt; 
+        &lt;/appearance&gt; 
+        &lt;box&gt;&lt;/box&gt; 
+    &lt;/shape&gt; 
+		</code></pre>
 		
         <p>
 		The resulting page inside your browser should now look like this:
@@ -146,30 +146,30 @@
 		We will now simply transform the green cone three units to the left (west) before we add it, and we will move the blue sphere three units to the right (east), so that the content of the <code>scene</code> tag now looks like this:
 		</p>
         
-		<div class="codeSnippet">			
-			&lt;shape&gt; <br>
-			&emsp;&emsp;  &lt;appearance&gt; <br>
-			&emsp;&emsp;&emsp;&emsp;  &lt;material diffuseColor='1 0 0'&gt;&lt;/material&gt; <br>
-			&emsp;&emsp;  &lt;/appearance&gt; <br>
-			&emsp;&emsp; &lt;box&gt;&lt;/box&gt; <br>
-			&lt;/shape&gt; <br>
-			&lt;transform translation='-3 0 0'&gt; <br>
-			&emsp;&emsp;&lt;shape&gt; <br>
-			&emsp;&emsp;&emsp;&emsp;  &lt;appearance&gt; <br>
-			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  &lt;material diffuseColor='0 1 0'&gt;&lt;/material&gt; <br>
-			&emsp;&emsp;&emsp;&emsp;  &lt;/appearance&gt; <br>
-			&emsp;&emsp;&emsp;&emsp; &lt;cone&gt;&lt;/cone&gt; <br>
-			&emsp;&emsp;&lt;/shape&gt; <br>
-			&lt;/transform&gt; <br>
-			&lt;transform translation='3 0 0'&gt; <br>
-			&emsp;&emsp;&lt;shape&gt; <br>
-			&emsp;&emsp;&emsp;&emsp;  &lt;appearance&gt; <br>
-			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  &lt;material diffuseColor='0 0 1'&gt;&lt;/material&gt; <br>
-			&emsp;&emsp;&emsp;&emsp;  &lt;/appearance&gt; <br>
-			&emsp;&emsp;&emsp;&emsp; &lt;sphere&gt;&lt;/sphere&gt; <br>
-			&emsp;&emsp;&lt;/shape&gt; <br>
-			&lt;/transform&gt; <br>
-		</div>
+		<pre class="prettyprint"><code class="language-html">			
+    &lt;shape&gt; 
+        &lt;appearance&gt; 
+        &lt;material diffuseColor='1 0 0'&gt;&lt;/material&gt; 
+        &lt;/appearance&gt; 
+        &lt;box&gt;&lt;/box&gt; 
+    &lt;/shape&gt; 
+    &lt;transform translation='-3 0 0'&gt; 
+    &lt;shape&gt; 
+        &lt;appearance&gt; 
+        &lt;material diffuseColor='0 1 0'&gt;&lt;/material&gt; 
+        &lt;/appearance&gt; 
+        &lt;cone&gt;&lt;/cone&gt; 
+    &lt;/shape&gt; 
+    &lt;/transform&gt; 
+    &lt;transform translation='3 0 0'&gt; 
+    &lt;shape&gt; 
+        &lt;appearance&gt; 
+        &lt;material diffuseColor='0 0 1'&gt;&lt;/material&gt; 
+        &lt;/appearance&gt; 
+        &lt;sphere&gt;&lt;/sphere&gt; 
+    &lt;/shape&gt; 
+    &lt;/transform&gt; 
+		</code></pre>
 		
         <p>
 		Inside your browser, you should now hopefully be able to see the following result:
@@ -194,8 +194,8 @@
         <div class="docuUsedNodeList">                        
             <h3>Get this X3DOM example:</h3>
             <ul>
-                <li><a href="HelloX3DOM.html"><img src="../../liveDemo.png">Display example HTML file</a></li>
-                <li><a href="javascript:window.location='view-source:'+window.location.href;"><img src="../../source.png">View example page source</a></li>                
+                <li><a href="HelloX3DOM.html"><img src="../../liveDemo.png">Display example HTML file</a></li>                
+                <li><a href="javascript:window.location='view-source:' + window.location.href.replace('index.html', 'HelloX3DOM.html');"><img src="../../source.png">View example page source</a></li>                
                 <li><a href="HelloX3DOM.zip"><img src="../../download.png">Download full example (.zip archive)</a></li>
             </ul>      
             <br>
