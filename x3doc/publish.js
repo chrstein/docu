@@ -172,15 +172,17 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     view.api = "node";
     generateComponents(componentMap);
+    generateIndex("Nodes",typeLists.x3dNodes,false,"node/nodes.html",true);
 };
 
 //----------------------------------------------------------------------------------------------------------------------
 
-function createNodeApiPathWithFolders(doc,url)
+function createNodeApiPathWithFolders(doc,url, addNodeFolder)
 {
+    addNodeFolder = addNodeFolder === false ? false : true;
     var desc = disassemble(url,true,/\./g);
 
-    return /*desc.path[0]+"/"+*/"node/"+doc.component+"/"+desc.name+ "." + desc.ending;
+    return (addNodeFolder ? "node/" : "")+doc.component+"/"+desc.name+ "." + desc.ending;
 }
 
 
@@ -508,10 +510,9 @@ function generateX3DNode(title, docs, filename)
     var  docData = {
         title: title,
         docs: docs,
-        filename: "node"+filename
+        filename: filename
     };
 
-    console.log(filename);
     var outpath = path.join(outdir , filename),
         html = view.render('classContainer.tmpl', docData);
     fs.writeFileSync(outpath, html, 'utf8');
@@ -588,13 +589,10 @@ function generateIndex(title, objects, isNameSpace, filename, generateUrls)
             url: generateUrls ?
                 (view.api == "full" ?
                     createFullApiPathWithFolders(objects[o].longname,isNameSpace,false) :
-                    createNodeApiPathWithFolders(objects[o], helper.longnameToUrl[objects[o].longname])) :
+                    createNodeApiPathWithFolders(objects[o], helper.longnameToUrl[objects[o].longname],false)) :
                 objects[o].url
         });
     }
-    console.log(view.api);
-    console.log(docData.indexed);
-
 
     docData.indexed.sort(function(a,b)
     {
