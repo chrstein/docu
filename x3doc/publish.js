@@ -167,8 +167,8 @@ exports.publish = function(taffyData, opts, tutorials) {
     generateIndex("Classes", typeLists.classes, false, "full/classes.html");
     generateIndex("Namespaces", typeLists.namespaces, true, "full/namespaces.html");
 
-    view.api = "node";
-    generateIndex("Components", typeLists.namespaces, true, "node/components.html");
+    //view.api = "node";
+    //generateIndex("Components", typeLists.namespaces, true, "node/components.html");
 };
 
 //----------------------------------------------------------------------------------------------------------------------
