@@ -111,7 +111,7 @@ a
     text-align:center;
 }
 
-.docuUsedNodeList
+.contentBox
 {
     display:inline-block;
     
@@ -130,15 +130,20 @@ a
     -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
 }
 
-.docuUsedNodeList h3
+.contentBox h2
 {
     margin-top:0;
     color:#444;    
 }
 
-.docuUsedNodeList img
+.contentBox img
 {
     vertical-align:middle;
+}
+
+h2
+{
+    margin-top:2.0em;
 }
 
 .prettyprint
