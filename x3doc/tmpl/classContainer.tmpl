@@ -80,7 +80,7 @@
                 <?js= f.name + '=\'' + (f.initvalue ? f.initvalue : '') + '\'' ?>
                 <?js }); ?>
 
-                <?js= '&gt/&lt;' + doc.name + '&gt' ?>
+                <?js= '&gt;&lt;/' + doc.name + '&gt' ?>
             </code>
         </div>
         <?js } ?>
@@ -114,7 +114,7 @@
             ?>
 
             <li class="inheritance-lvl-<?js= level ?>">
-                <b><?js=  doc.name ?></b>
+                <b><?js= doc.name ?></b>
                 <?js
                     if(doc.childNodes && doc.childNodes.length)
                     {

@@ -446,7 +446,7 @@ x3dom.registerNodeType(
          * @classdesc A node for simple boolean metadata.
          *
          * @extends x3dom.nodeTypes.X3DMetadataObject
-         * @x3d 2.3
+         * @x3d 3.2
          * @component Core
          * @status experimental
 		 * @param {Object} ctx - context object containing initial settings
@@ -461,7 +461,7 @@ x3dom.registerNodeType(
              * @field x3d
              * @initvalue []
              * @instance
-             * @x3d 2.1
+             * @x3d 3.2
              */
             this.addField_MFBoolean(ctx, 'value', []);
         }
